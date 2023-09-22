@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/09/2023 14:13:26 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,7 +21,7 @@ public class MmsVendas  implements java.io.Serializable {
 
 
      private int mmsIdVendas;
-     private int mmsCliente;
+     private Integer mmsCliente;
      private Date mmsDataVenda;
      private String mmsValor;
      private int mmsVendedores;
@@ -36,7 +36,7 @@ public class MmsVendas  implements java.io.Serializable {
         this.mmsValor = mmsValor;
         this.mmsVendedores = mmsVendedores;
     }
-    public MmsVendas(int mmsIdVendas, int mmsCliente, Date mmsDataVenda, String mmsValor, int mmsVendedores) {
+    public MmsVendas(int mmsIdVendas, Integer mmsCliente, Date mmsDataVenda, String mmsValor, int mmsVendedores) {
        this.mmsIdVendas = mmsIdVendas;
        this.mmsCliente = mmsCliente;
        this.mmsDataVenda = mmsDataVenda;
@@ -58,11 +58,11 @@ public class MmsVendas  implements java.io.Serializable {
 
     
     @Column(name="mms_cliente")
-    public int getMmsCliente() {
+    public Integer getMmsCliente() {
         return this.mmsCliente;
     }
     
-    public void setMmsCliente(int mmsCliente) {
+    public void setMmsCliente(Integer mmsCliente) {
         this.mmsCliente = mmsCliente;
     }
 

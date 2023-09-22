@@ -5,6 +5,7 @@
  */
 package views;
 
+import bean.MmsCategoria;
 import tools.Util;
 
 /**
@@ -21,7 +22,20 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
         initComponents();
         setTitle("Clientes Inclusão e Alteração");
         setLocationRelativeTo(null);
+        
     }
+    
+    public MmsCategoria viewBean(){
+         MmsCategoria categoria = new MmsCategoria();
+        categoria.setMmsIdcategoria(Util.strInt(jTxtMMSCodigo.getText()));
+        categoria.setMmsNome(jTxtMMSNome.getText());
+        categoria.setMmsDescricao(jTxtMMSDescricao.getText());
+        categoria.setMmsTipoPlaca(jTxtMMSTipoPlaca.getText());
+        
+        return categoria;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

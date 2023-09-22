@@ -1,7 +1,8 @@
 package bean;
-// Generated 13/09/2023 14:13:26 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,11 +21,11 @@ public class MmsProduto  implements java.io.Serializable {
      private int mmsIdproduto;
      private String mmsNome;
      private String mmsDescricao;
-     private double mmsPreco;
+     private BigDecimal mmsPreco;
      private String mmsConsumo;
      private String mmsMemoria;
      private String mmsDimensao;
-     private double mmsPeso;
+     private short mmsPeso;
      private String mmsMarca;
      private String mmsGarantia;
      private String mmsModelo;
@@ -32,7 +33,7 @@ public class MmsProduto  implements java.io.Serializable {
     public MmsProduto() {
     }
 
-    public MmsProduto(int mmsIdproduto, String mmsNome, String mmsDescricao, double mmsPreco, String mmsConsumo, String mmsMemoria, String mmsDimensao, double mmsPeso, String mmsMarca, String mmsGarantia, String mmsModelo) {
+    public MmsProduto(int mmsIdproduto, String mmsNome, String mmsDescricao, BigDecimal mmsPreco, String mmsConsumo, String mmsMemoria, String mmsDimensao, short mmsPeso, String mmsMarca, String mmsGarantia, String mmsModelo) {
        this.mmsIdproduto = mmsIdproduto;
        this.mmsNome = mmsNome;
        this.mmsDescricao = mmsDescricao;
@@ -80,11 +81,11 @@ public class MmsProduto  implements java.io.Serializable {
 
     
     @Column(name="mms_preco", nullable=false, precision=8)
-    public double getMmsPreco() {
+    public BigDecimal getMmsPreco() {
         return this.mmsPreco;
     }
     
-    public void setMmsPreco(double mmsPreco) {
+    public void setMmsPreco(BigDecimal mmsPreco) {
         this.mmsPreco = mmsPreco;
     }
 
@@ -120,11 +121,11 @@ public class MmsProduto  implements java.io.Serializable {
 
     
     @Column(name="mms_peso", nullable=false)
-    public double getMmsPeso() {
+    public short getMmsPeso() {
         return this.mmsPeso;
     }
     
-    public void setMmsPeso(double mmsPeso) {
+    public void setMmsPeso(short mmsPeso) {
         this.mmsPeso = mmsPeso;
     }
 

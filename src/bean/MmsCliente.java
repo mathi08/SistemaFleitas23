@@ -1,5 +1,5 @@
 package bean;
-// Generated 13/09/2023 14:13:26 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,13 +34,13 @@ public class MmsCliente  implements java.io.Serializable {
      private String mmsCelular;
      private String mmsTelefoneResidencial;
      private int mmsEstadoCivil;
-     private int sexo;
+     private int mmsSexo;
 
     public MmsCliente() {
     }
 
 	
-    public MmsCliente(int mmsIdcliente, String mmsNome, String mmsCpf, String mmsRg, String mmsEmail, String mmsCep, String mmsEndereco, String mmsCidade, int mmsNumeroCasa, String mmsNacionalidade, String mmsCelular, String mmsTelefoneResidencial, int mmsEstadoCivil, int sexo) {
+    public MmsCliente(int mmsIdcliente, String mmsNome, String mmsCpf, String mmsRg, String mmsEmail, String mmsCep, String mmsEndereco, String mmsCidade, int mmsNumeroCasa, String mmsNacionalidade, String mmsCelular, String mmsTelefoneResidencial, int mmsEstadoCivil, int mmsSexo) {
         this.mmsIdcliente = mmsIdcliente;
         this.mmsNome = mmsNome;
         this.mmsCpf = mmsCpf;
@@ -54,9 +54,9 @@ public class MmsCliente  implements java.io.Serializable {
         this.mmsCelular = mmsCelular;
         this.mmsTelefoneResidencial = mmsTelefoneResidencial;
         this.mmsEstadoCivil = mmsEstadoCivil;
-        this.sexo = sexo;
+        this.mmsSexo = mmsSexo;
     }
-    public MmsCliente(int mmsIdcliente, String mmsNome, String mmsCpf, String mmsRg, Date mmsDataNasc, String mmsEmail, String mmsCep, String mmsEndereco, String mmsCidade, int mmsNumeroCasa, String mmsNacionalidade, String mmsCelular, String mmsTelefoneResidencial, int mmsEstadoCivil, int sexo) {
+    public MmsCliente(int mmsIdcliente, String mmsNome, String mmsCpf, String mmsRg, Date mmsDataNasc, String mmsEmail, String mmsCep, String mmsEndereco, String mmsCidade, int mmsNumeroCasa, String mmsNacionalidade, String mmsCelular, String mmsTelefoneResidencial, int mmsEstadoCivil, int mmsSexo) {
        this.mmsIdcliente = mmsIdcliente;
        this.mmsNome = mmsNome;
        this.mmsCpf = mmsCpf;
@@ -71,7 +71,7 @@ public class MmsCliente  implements java.io.Serializable {
        this.mmsCelular = mmsCelular;
        this.mmsTelefoneResidencial = mmsTelefoneResidencial;
        this.mmsEstadoCivil = mmsEstadoCivil;
-       this.sexo = sexo;
+       this.mmsSexo = mmsSexo;
     }
    
      @Id 
@@ -217,13 +217,13 @@ public class MmsCliente  implements java.io.Serializable {
     }
 
     
-    @Column(name="sexo", nullable=false)
-    public int getSexo() {
-        return this.sexo;
+    @Column(name="mms_sexo", nullable=false)
+    public int getMmsSexo() {
+        return this.mmsSexo;
     }
     
-    public void setSexo(int sexo) {
-        this.sexo = sexo;
+    public void setMmsSexo(int mmsSexo) {
+        this.mmsSexo = mmsSexo;
     }
 
 

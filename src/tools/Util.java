@@ -5,6 +5,8 @@
  */
 package tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -50,29 +52,23 @@ public static void limparCampos(JComponent... vetComp){
         }   
     }
     
-    public static int strInt(String  cad) {
-            return Integer.parseInt(cad);
+    public static int strInt(String cad){
+        return Integer.parseInt(cad);
     }
-    
     public static String intStr(int num){
-        return "";
+        return Integer.toString(num);
     }
-    
-    public static double doubleStr(double cad){
-        return 0;
+    public static double strDouble(String cad){
+        return Double.parseDouble(cad);
     }
-    
-    public static String DoubleStr(double num){
-        return "";
+    public static String doubleStr(double num){
+        return Double.toString(num);
     }
-    
-    public static Date StrDate(String cad){
-        return null;
+    public static Date strDate(String cad)throws ParseException{
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        return formato.parse(cad);
     }
-    
-    public static Date dateStr(String num){
-        return null;
-    }
-}
-
-
+    public static String dateStr(Date data){
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        return formato.format(data);
+}}

@@ -5,7 +5,10 @@
  */
 package views;
 
+import bean.MmsCliente;
+import dao.MmsClienteDAO;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,6 +25,10 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
     /**
      * Creates new form MMSTELACliente1
      */
+     boolean incluindo;
+     MmsClienteDAO mmsClienteDAO;
+     MmsCliente mmsCliente;
+     
     public MmsTelaCliente(java.awt.Frame parent, boolean modal) {
          super(parent, modal);
         initComponents();
@@ -48,6 +55,54 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
         
     }
 
+        public MmsCliente ViewBean() {
+        MmsCliente mmscliente = new MmsCliente();
+        int id = Integer.valueOf(jTxtMMSCodigo.getText());
+        int num = Integer.valueOf(jTxtMMSNumeroCasa.getText());
+        
+        mmscliente.setMmsIdcliente(id);
+        mmscliente.setMmsNome(jTxtMMSNome.getText());
+        mmscliente.setMmsCpf(jFmtMMSCPF.getText());
+        mmscliente.setMmsRg(jFmtMMSRG.getText());
+          SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    try {
+        mmscliente.setMmsDataNasc(formato.parse(jFmtMMSDataNascimento.getText()));
+    } catch (ParseException ex) {
+        Logger.getLogger(MmsTelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        mmscliente.setMmsEmail(jTxtMMSEmail.getText());
+        mmscliente.setMmsCep(jFmtMMSCep.getText());
+        mmscliente.setMmsEndereco(jTxtMMSEndereco.getText());
+        mmscliente.setMmsCidade(jTxtMMSCidade.getText());
+        mmscliente.setMmsNumeroCasa(num);
+        mmscliente.setMmsNacionalidade(jTxtMMSNacionalidade.getText());
+        mmscliente.setMmsCelular(jFmtMMSCelular.getText());
+        mmscliente.setMmsTelefoneResidencial(jFmtMMSTelefone.getText());
+        mmscliente.setMmsEstadoCivil(jCboMMSEstadoCivil.getSelectedIndex());
+        mmscliente.setMmsSexo(jCboMMSSexo.getSelectedIndex());
+        
+        return mmscliente;
+     }
+    
+        public void beanView(MmsCliente mmscliente){
+              
+        jTxtMMSCodigo.setText(Util.intStr(mmscliente.getMmsIdcliente()));
+        jTxtMMSNome.setText(mmscliente.getMmsNome());
+        jFmtMMSCPF.setText(mmscliente.getMmsCpf());
+        jFmtMMSRG.setText(mmscliente.getMmsRg());
+        jFmtMMSDataNascimento.setText(Util.dateStr(mmscliente.getMmsDataNasc()));
+        jFmtMMSCep.setText(mmscliente.getMmsCep());
+        jTxtMMSEmail.setText(mmscliente.getMmsEmail());
+        jTxtMMSEndereco.setText(mmscliente.getMmsEndereco());
+        jTxtMMSCidade.setText(mmscliente.getMmsCidade());
+        jTxtMMSNumeroCasa.setText(Util.intStr(mmscliente.getMmsNumeroCasa()));
+        jTxtMMSNacionalidade.setText(mmscliente.getMmsNacionalidade());
+        jFmtMMSCelular.setText(mmscliente.getMmsCelular());
+        jFmtMMSTelefone.setText(mmscliente.getMmsTelefoneResidencial());
+        jCboMMSEstadoCivil.setSelectedIndex(mmscliente.getMmsEstadoCivil());
+        jCboMMSSexo.setSelectedIndex(mmscliente.getMmsSexo());
+    } 
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -329,14 +384,26 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
         Util.habilitar(true,jTxtMMSEndereco, jTxtMMSNacionalidade,jTxtMMSNome, jTxtMMSNumeroCasa, jTxtMMSCodigo,jTxtMMSCidade,jFmtMMSCPF,jFmtMMSCelular,jFmtMMSCep,jFmtMMSDataNascimento,jTxtMMSEmail,jFmtMMSRG,jFmtMMSTelefone, jCboMMSEstadoCivil,jCboMMSSexo, jBtnMMSConfirmar,jBtnMMSCancelar);
-       Util.habilitar(false,jBtnMMSAlterar,jBtnMMSExcluir,jBtnMMSPesquisar,jBtnMMSIncluir );
-       Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
+        Util.habilitar(false,jBtnMMSAlterar,jBtnMMSExcluir,jBtnMMSPesquisar,jBtnMMSIncluir );
+        Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
          Util.habilitar(false,jTxtMMSEndereco, jTxtMMSNacionalidade,jTxtMMSNome, jTxtMMSNumeroCasa, jTxtMMSCodigo,jTxtMMSCidade,jFmtMMSCPF,jFmtMMSCelular,jFmtMMSCep,jFmtMMSDataNascimento,jTxtMMSEmail,jFmtMMSRG,jFmtMMSTelefone, jCboMMSEstadoCivil,jCboMMSSexo, jBtnMMSConfirmar,jBtnMMSCancelar);
-       Util.habilitar(true,jBtnMMSAlterar,jBtnMMSExcluir,jBtnMMSPesquisar,jBtnMMSIncluir );
-       Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
+         Util.habilitar(true,jBtnMMSAlterar,jBtnMMSExcluir,jBtnMMSPesquisar,jBtnMMSIncluir );
+         Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
+       
+        MmsCliente mmsCliente = ViewBean();
+       
+       MmsClienteDAO mmsClienteDAO = new MmsClienteDAO();
+       mmsClienteDAO.insert(mmsCliente);
+       
+        if(incluindo == true){
+            mmsClienteDAO.insert(mmsCliente);
+        }else{
+            mmsClienteDAO.update(mmsCliente);
+        }
+       
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
 
     private void jBtnMMSCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSCancelarActionPerformed
@@ -356,6 +423,11 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
         
     private void jBtnMMSPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSPesquisarActionPerformed
         Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
+        
+        MmsTelaClientesPesquisar mmsTelaClientePesquisar = new MmsTelaClientesPesquisar(null, true);
+        mmsTelaClientePesquisar.setTelaAnterior(this);     
+        mmsTelaClientePesquisar.setVisible(true);
+        
     }//GEN-LAST:event_jBtnMMSPesquisarActionPerformed
 
     /**

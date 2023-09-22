@@ -5,7 +5,14 @@
  */
 package views;
 
+
+import bean.MmsCategoria;
+import dao.MmsCategoriaDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import tools.ControleCategoria;
+import tools.ProdutoControle;
 import tools.Util;
 
 /**
@@ -13,7 +20,13 @@ import tools.Util;
  * @author u07875284120
  */
 public class MmsTelaCategoria extends javax.swing.JDialog {
-
+        
+    MmsCategoriaDAO categoriaDAO;
+    MmsCategoria mmscategoria;
+    ControleCategoria controlecategoria;
+    private MmsTelaCategoriaIA mmsTelaCategoriaIA;
+    private boolean incluindo;
+    
     /**
      * Creates new form MmsTelCategoria
      */
@@ -22,7 +35,18 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         initComponents();
         setTitle("Categoria");
         setLocationRelativeTo(null);
+    
+    
+        mmsTelaCategoriaIA = new MmsTelaCategoriaIA(null, true);
+        controlecategoria = new ControleCategoria();
+        categoriaDAO = new MmsCategoriaDAO();
+        List lista = categoriaDAO.listAll();
+        controlecategoria.setList(lista);
+        jTblMMSTabela.setModel(controlecategoria);
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

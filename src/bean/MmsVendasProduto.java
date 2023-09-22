@@ -1,7 +1,8 @@
 package bean;
-// Generated 13/09/2023 14:13:26 by Hibernate Tools 4.3.1
+// Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,21 +19,21 @@ public class MmsVendasProduto  implements java.io.Serializable {
 
 
      private int mmsIdvendasProduto;
-     private int mmsVenda;
-     private int mmsProduto;
+     private Integer mmsVenda;
+     private Integer mmsProduto;
      private String mmsQuantidade;
-     private double mmsValorUnitario;
+     private BigDecimal mmsValorUnitario;
 
     public MmsVendasProduto() {
     }
 
 	
-    public MmsVendasProduto(int mmsIdvendasProduto, String mmsQuantidade, double mmsValorUnitario) {
+    public MmsVendasProduto(int mmsIdvendasProduto, String mmsQuantidade, BigDecimal mmsValorUnitario) {
         this.mmsIdvendasProduto = mmsIdvendasProduto;
         this.mmsQuantidade = mmsQuantidade;
         this.mmsValorUnitario = mmsValorUnitario;
     }
-    public MmsVendasProduto(int mmsIdvendasProduto, int mmsVenda, int mmsProduto, String mmsQuantidade, double mmsValorUnitario) {
+    public MmsVendasProduto(int mmsIdvendasProduto, Integer mmsVenda, Integer mmsProduto, String mmsQuantidade, BigDecimal mmsValorUnitario) {
        this.mmsIdvendasProduto = mmsIdvendasProduto;
        this.mmsVenda = mmsVenda;
        this.mmsProduto = mmsProduto;
@@ -54,21 +55,21 @@ public class MmsVendasProduto  implements java.io.Serializable {
 
     
     @Column(name="mms_venda")
-    public int getMmsVenda() {
+    public Integer getMmsVenda() {
         return this.mmsVenda;
     }
     
-    public void setMmsVenda(int mmsVenda) {
+    public void setMmsVenda(Integer mmsVenda) {
         this.mmsVenda = mmsVenda;
     }
 
     
     @Column(name="mms_produto")
-    public int getMmsProduto() {
+    public Integer getMmsProduto() {
         return this.mmsProduto;
     }
     
-    public void setMmsProduto(int mmsProduto) {
+    public void setMmsProduto(Integer mmsProduto) {
         this.mmsProduto = mmsProduto;
     }
 
@@ -84,11 +85,11 @@ public class MmsVendasProduto  implements java.io.Serializable {
 
     
     @Column(name="mms_valorUnitario", nullable=false, precision=8)
-    public double getMmsValorUnitario() {
+    public BigDecimal getMmsValorUnitario() {
         return this.mmsValorUnitario;
     }
     
-    public void setMmsValorUnitario(double mmsValorUnitario) {
+    public void setMmsValorUnitario(BigDecimal mmsValorUnitario) {
         this.mmsValorUnitario = mmsValorUnitario;
     }
 

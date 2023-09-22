@@ -5,7 +5,11 @@
  */
 package views;
 
+import bean.MmsProduto;
+import dao.MmsProdutoDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
+import tools.ProdutoControle;
 import tools.Util;
 
 /**
@@ -14,14 +18,24 @@ import tools.Util;
  */
 public class MmsTelaProduto extends javax.swing.JDialog {
 
-    /**
-     * Creates new form MmsTelaProduto
-     */
-    public MmsTelaProduto(java.awt.Frame parent, boolean modal) {
+    MmsProdutoDAO produtoDAO;
+    MmsProduto mmsproduto;
+    ProdutoControle produtoControle;        
+    private MmsTelaProdutoIA mmsTelaProdutoIA;
+    private boolean incluindo;
+    
+    public MmsTelaProduto(java.awt.Frame parent, boolean modal) {  
          super(parent, modal);
-        initComponents();
-        setTitle("Produto");
-        setLocationRelativeTo(null);
+         initComponents();
+         setTitle("Produto");
+         setLocationRelativeTo(null);
+         
+         mmsTelaProdutoIA = new MmsTelaProdutoIA(null, true);
+         produtoDAO = new MmsProdutoDAO();
+         List lista = produtoDAO.listAll();
+         produtoControle = new ProdutoControle();
+         produtoControle.setList(lista);
+         jTblMmmsTabela2.setModel(produtoControle);
     }
 
     /**
@@ -35,7 +49,7 @@ public class MmsTelaProduto extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTblMmmsTabela2 = new javax.swing.JTable();
         jBtnMMSIncluir = new javax.swing.JButton();
         jBtnMMSExcluir = new javax.swing.JButton();
         jBtnMMSAlterar = new javax.swing.JButton();
@@ -45,7 +59,7 @@ public class MmsTelaProduto extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Unispace", 0, 24)); // NOI18N
         jLabel1.setText("Produto");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTblMmmsTabela2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +70,7 @@ public class MmsTelaProduto extends javax.swing.JDialog {
                 "Código Produto", "Nome", "Preço", "Garantia"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTblMmmsTabela2);
 
         jBtnMMSIncluir.setText("Incluir");
         jBtnMMSIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -122,22 +136,29 @@ public class MmsTelaProduto extends javax.swing.JDialog {
           // TODO add your handling code here:
         MmsTelaProdutoIA mmsTelaProdutoIA = new MmsTelaProdutoIA(null, true);
         mmsTelaProdutoIA.setVisible(true);
+        incluindo = true;
 
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
         MmsTelaProdutoIA mmsTelaProdutoIA = new MmsTelaProdutoIA(null, true);
         mmsTelaProdutoIA.setVisible(true);
+        incluindo = false;
         
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
         
-        if (Util.perguntar("Deseja excluir o projeto?") == true){
-       
-       }else {
-                Util.mensagem("Exclusão cancelada.");
-                }
+         if (Util.perguntar("Deseja excluir o registro?") == true) {
+            int sel = jTblMmmsTabela2.getSelectedRow();
+            mmsproduto = produtoControle.getBean(sel);
+            produtoDAO.delete(mmsproduto);
+            //atualizar a lista no jtable
+            List lista = produtoDAO.listAll();
+            produtoControle.setList(lista);
+        } else {
+            Util.mensagem("Exclusão cancelada.");
+        }
         
     }//GEN-LAST:event_jBtnMMSExcluirActionPerformed
 
@@ -189,6 +210,6 @@ public class MmsTelaProduto extends javax.swing.JDialog {
     private javax.swing.JButton jBtnMMSIncluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTblMmmsTabela2;
     // End of variables declaration//GEN-END:variables
 }

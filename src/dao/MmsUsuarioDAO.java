@@ -5,6 +5,7 @@
  */
 package dao;
 
+import bean.MmsUsuario;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -43,8 +44,8 @@ public class MmsUsuarioDAO extends DAO_Abstract {
     @Override
     public Object list(int id) {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(MmsUsuarioDAO.class); //importar do bean e do hibernate; criteria é pra fazer select * from na O.O
-        criteria.add(Restrictions.eq("idclientes", id)); //é um método estático; id é o parametro da linha 46
+        Criteria criteria = session.createCriteria(MmsUsuario.class); //importar do bean e do hibernate; criteria é pra fazer select * from na O.O
+        criteria.add(Restrictions.eq("id", id)); //é um método estático; id é o parametro da linha 46
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
@@ -53,7 +54,7 @@ public class MmsUsuarioDAO extends DAO_Abstract {
     @Override
     public List listAll() {
         session.beginTransaction();
-        Criteria criteria = session.createCriteria(MmsUsuarioDAO.class); //importar do bean e do hibernate; criteria é pra fazer select * from na O.O
+        Criteria criteria = session.createCriteria(MmsUsuario.class); //importar do bean e do hibernate; criteria é pra fazer select * from na O.O
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list

@@ -5,6 +5,7 @@
  */
 package views;
 
+import bean.MmsProduto;
 import tools.Util;
 
 /**
@@ -22,6 +23,24 @@ public class MmsTelaProdutoIA extends javax.swing.JDialog {
         setTitle("Inclusão e Alteração de Produtos");
         setLocationRelativeTo(null);
     }
+    
+    
+    public MmsProduto viewBean() {
+         MmsProduto produto = new MmsProduto();
+        produto.setMmsIdproduto(Util.strInt(jTxtMMSCodigoP.getText()));
+        produto.setMmsNome(jTxtMMSNomeP.getText());
+        produto.setMmsDescricao(jTxtMMSDescricao.getText());
+        //produto.setMmsPreco(Util.doubleStr(jTxtMMSPreco.getText()));
+        produto.setMmsConsumo((jTxtMMSconsumo.getText()));
+        produto.setMmsMemoria(jTxtMMSMemoria.getText());
+        produto.setMmsDimensao(jTxtMMSDimensao.getText());
+        //produto.setMmsPeso(jTxtMMSPeso.getText());
+        produto.setMmsMarca(jTxtMMSMarca.getText());
+        produto.setMmsGarantia(jTxtMMSGarantia.getText());
+        produto.setMmsModelo(jTxtMMSModelo.getText());
+        
+        return produto;
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
