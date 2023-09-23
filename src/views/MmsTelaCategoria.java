@@ -152,11 +152,16 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
-         if (Util.perguntar("Deseja excluir o projeto?") == true){
-       
-       }else {
-                Util.mensagem("Exclusão cancelada.");
-                }
+         if (Util.perguntar("Deseja excluir o registro?") == true) {
+            int sel = jTblMMSTabela.getSelectedRow();
+            mmscategoria = controlecategoria.getBean(sel);
+            categoriaDAO.delete(mmscategoria);
+            //atualizar a lista no jtable
+            List lista = categoriaDAO.listAll();
+            controlecategoria.setList(lista);
+        } else {
+            Util.mensagem("Exclusão cancelada.");
+        }
     }//GEN-LAST:event_jBtnMMSExcluirActionPerformed
 
     /**
