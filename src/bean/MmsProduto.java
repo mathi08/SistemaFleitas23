@@ -21,11 +21,11 @@ public class MmsProduto  implements java.io.Serializable {
      private int mmsIdproduto;
      private String mmsNome;
      private String mmsDescricao;
-     private BigDecimal mmsPreco;
+     private Double mmsPreco;
      private String mmsConsumo;
      private String mmsMemoria;
      private String mmsDimensao;
-     private short mmsPeso;
+     private int mmsPeso;
      private String mmsMarca;
      private String mmsGarantia;
      private String mmsModelo;
@@ -33,7 +33,7 @@ public class MmsProduto  implements java.io.Serializable {
     public MmsProduto() {
     }
 
-    public MmsProduto(int mmsIdproduto, String mmsNome, String mmsDescricao, BigDecimal mmsPreco, String mmsConsumo, String mmsMemoria, String mmsDimensao, short mmsPeso, String mmsMarca, String mmsGarantia, String mmsModelo) {
+    public MmsProduto(int mmsIdproduto, String mmsNome, String mmsDescricao, Double mmsPreco, String mmsConsumo, String mmsMemoria, String mmsDimensao, int mmsPeso, String mmsMarca, String mmsGarantia, String mmsModelo) {
        this.mmsIdproduto = mmsIdproduto;
        this.mmsNome = mmsNome;
        this.mmsDescricao = mmsDescricao;
@@ -81,11 +81,11 @@ public class MmsProduto  implements java.io.Serializable {
 
     
     @Column(name="mms_preco", nullable=false, precision=8)
-    public BigDecimal getMmsPreco() {
+    public Double getMmsPreco() {
         return this.mmsPreco;
     }
     
-    public void setMmsPreco(BigDecimal mmsPreco) {
+    public void setMmsPreco(Double mmsPreco) {
         this.mmsPreco = mmsPreco;
     }
 
@@ -121,11 +121,11 @@ public class MmsProduto  implements java.io.Serializable {
 
     
     @Column(name="mms_peso", nullable=false)
-    public short getMmsPeso() {
+    public int getMmsPeso() {
         return this.mmsPeso;
     }
     
-    public void setMmsPeso(short mmsPeso) {
+    public void setMmsPeso(int mmsPeso) {
         this.mmsPeso = mmsPeso;
     }
 

@@ -2,6 +2,7 @@ package bean;
 // Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
 
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class MmsUsuario  implements java.io.Serializable {
      private String mmsNome;
      private String mmsApelido;
      private String mmsCpf;
-     private String mmsDataNasc;
+     private Date mmsDataNasc;
      private String mmsSenha;
      private int mmsNivel;
      private String mmsAtivo;
@@ -29,7 +30,7 @@ public class MmsUsuario  implements java.io.Serializable {
     public MmsUsuario() {
     }
 
-    public MmsUsuario(int mmsIdUsuario, String mmsNome, String mmsApelido, String mmsCpf, String mmsDataNasc, String mmsSenha, int mmsNivel, String mmsAtivo) {
+    public MmsUsuario(int mmsIdUsuario, String mmsNome, String mmsApelido, String mmsCpf, Date mmsDataNasc, String mmsSenha, int mmsNivel, String mmsAtivo) {
        this.mmsIdUsuario = mmsIdUsuario;
        this.mmsNome = mmsNome;
        this.mmsApelido = mmsApelido;
@@ -84,11 +85,11 @@ public class MmsUsuario  implements java.io.Serializable {
 
     
     @Column(name="mms_dataNasc", nullable=false, length=45)
-    public String getMmsDataNasc() {
+    public Date getMmsDataNasc() {
         return this.mmsDataNasc;
     }
     
-    public void setMmsDataNasc(String mmsDataNasc) {
+    public void setMmsDataNasc(Date mmsDataNasc) {
         this.mmsDataNasc = mmsDataNasc;
     }
 

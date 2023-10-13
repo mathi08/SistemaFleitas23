@@ -6,18 +6,19 @@
 package views;
 
 import bean.MmsUsuario;
+import dao.MmsUsuarioDAO;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
-import dao.MmsUsuarioDAO;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import tools.UsuarioControle;
+
+
+
+
+
 
 /**
  *
@@ -59,7 +60,14 @@ public class MmsTelaUsuarios extends javax.swing.JDialog {
         mmsusuarios.setMmsNome(jTxtMMSNomeusuario.getText());
         mmsusuarios.setMmsApelido(jTxtMMSApelido.getText());
         mmsusuarios.setMmsCpf(jFmtMMSCPF.getText());
-        mmsusuarios.setMmsDataNasc(jFmtMMSNascimentoData.getText());
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+         try {
+             mmsusuarios.setMmsDataNasc(formato.parse(jFmtMMSNascimentoData.getText()));
+         } catch (ParseException ex) {
+        Logger.getLogger(MmsTelaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+    }
+   
         mmsusuarios.setMmsSenha(jPswMMSSenha.getText());
         mmsusuarios.setMmsNivel(jCboMMSNivel.getSelectedIndex());
         if(jCheckBox1.isSelected()==true){
@@ -78,7 +86,8 @@ public class MmsTelaUsuarios extends javax.swing.JDialog {
         jTxtMMSNomeusuario.setText(mmsusuario.getMmsNome());
         jTxtMMSApelido.setText(mmsusuario.getMmsApelido());
         jFmtMMSCPF.setText(mmsusuario.getMmsCpf());
-        jFmtMMSNascimentoData.setText(mmsusuario.getMmsDataNasc());
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        jFmtMMSNascimentoData.setText(formato.format(mmsusuario.getMmsDataNasc()));
         jPswMMSSenha.setText(mmsusuario.getMmsSenha());
         jCboMMSNivel.setSelectedIndex(mmsusuario.getMmsNivel());
         if ( mmsusuario.getMmsAtivo().equals("S") == true){

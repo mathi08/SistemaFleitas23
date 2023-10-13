@@ -11,7 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import tools.Util;
@@ -64,12 +63,14 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
         mmscliente.setMmsNome(jTxtMMSNome.getText());
         mmscliente.setMmsCpf(jFmtMMSCPF.getText());
         mmscliente.setMmsRg(jFmtMMSRG.getText());
-          SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+         
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
     try {
         mmscliente.setMmsDataNasc(formato.parse(jFmtMMSDataNascimento.getText()));
     } catch (ParseException ex) {
         Logger.getLogger(MmsTelaCliente.class.getName()).log(Level.SEVERE, null, ex);
     }
+    
         mmscliente.setMmsEmail(jTxtMMSEmail.getText());
         mmscliente.setMmsCep(jFmtMMSCep.getText());
         mmscliente.setMmsEndereco(jTxtMMSEndereco.getText());
@@ -414,10 +415,12 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
          if (Util.perguntar("Deseja excluir o projeto?") == true){
-       
+            MmsCliente cliente = ViewBean();
+            MmsClienteDAO clienteDAO = new MmsClienteDAO();
+            clienteDAO.delete(cliente);
        }else {
                 Util.mensagem("Exclusão cancelada.");
-                }
+                }  
          Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
     }//GEN-LAST:event_jBtnMMSExcluirActionPerformed
         

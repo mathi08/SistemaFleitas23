@@ -6,14 +6,16 @@
 package views;
 
 import bean.MmsCategoria;
+import dao.MmsCategoriaDAO;
 import tools.Util;
+import views.MmsTelaCategoria;
 
 /**
  *
  * @author halom
  */
 public class MmsTelaCategoriaIA extends javax.swing.JDialog {
-
+        
     /**
      * Creates new form MmsTelaCategoriaIA
      */
@@ -24,6 +26,10 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         
     }
+
+    
+
+    
     
     public MmsCategoria viewBean(){
          MmsCategoria categoria = new MmsCategoria();
@@ -35,8 +41,13 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
         return categoria;
     }
     
-    
-
+    public void beanView(MmsCategoria mmsCategoria){
+    jTxtMMSCodigo.setText(Util.intStr(mmsCategoria.getMmsIdcategoria()));
+    jTxtMMSDescricao.setText(mmsCategoria.getMmsDescricao());
+    jTxtMMSNome.setText(mmsCategoria.getMmsNome());
+    jTxtMMSTipoPlaca.setText(mmsCategoria.getMmsTipoPlaca());
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,10 +156,15 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
 
     private void jBtnMMSCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSCancelarActionPerformed
        setVisible(false);
+        Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca);
     }//GEN-LAST:event_jBtnMMSCancelarActionPerformed
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
         Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca);
+    
+        MmsCategoria mmsCategoria = viewBean();
+        MmsCategoriaDAO mmsCategoriaDAO = new MmsCategoriaDAO();
+        mmsCategoriaDAO.insert(mmsCategoria);
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
 
     /**

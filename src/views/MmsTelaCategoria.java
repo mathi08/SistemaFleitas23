@@ -9,10 +9,7 @@ package views;
 import bean.MmsCategoria;
 import dao.MmsCategoriaDAO;
 import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import tools.ControleCategoria;
-import tools.ProdutoControle;
 import tools.Util;
 
 /**
@@ -24,7 +21,7 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     MmsCategoriaDAO categoriaDAO;
     MmsCategoria mmscategoria;
     ControleCategoria controlecategoria;
-    private MmsTelaCategoriaIA mmsTelaCategoriaIA;
+    MmsTelaCategoriaIA mmsTelaCategoriaIA;
     private boolean incluindo;
     
     /**
@@ -45,6 +42,7 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         jTblMMSTabela.setModel(controlecategoria);
         
     }
+    
     
     
 
@@ -142,23 +140,36 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
-        MmsTelaCategoriaIA mmsTelaCategoriaIA = new MmsTelaCategoriaIA(null, true);
+        incluindo = true;
+        
         mmsTelaCategoriaIA.setVisible(true);
+        mmsTelaCategoriaIA.setTitle("Incluindo");
+        
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
-        MmsTelaCategoriaIA mmsTelaCategoriaIA = new MmsTelaCategoriaIA(null, true);
+         int sel = jTblMMSTabela.getSelectedRow();
+       
+        MmsCategoria mmscategoria = controlecategoria.getBean(sel);
+        mmsTelaCategoriaIA.beanView(mmscategoria);
+
         mmsTelaCategoriaIA.setVisible(true);
+        mmsTelaCategoriaIA.setTitle("Alterando");
+        incluindo = false;
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
-         if (Util.perguntar("Deseja excluir o registro?") == true) {
+          if (Util.perguntar("Deseja excluir o registro?") == true) {
             int sel = jTblMMSTabela.getSelectedRow();
-            mmscategoria = controlecategoria.getBean(sel);
-            categoriaDAO.delete(mmscategoria);
+              
+            MmsCategoria mmsCategoria = controlecategoria.getBean(sel);
+            categoriaDAO.delete(mmsCategoria);
+            
+            
             //atualizar a lista no jtable
             List lista = categoriaDAO.listAll();
             controlecategoria.setList(lista);
+            Util.mensagem("registro excluido");
         } else {
             Util.mensagem("Exclusão cancelada.");
         }

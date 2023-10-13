@@ -6,6 +6,7 @@
 package views;
 
 import bean.MmsProduto;
+import dao.MmsProdutoDAO;
 import tools.Util;
 
 /**
@@ -22,6 +23,7 @@ public class MmsTelaProdutoIA extends javax.swing.JDialog {
         initComponents();
         setTitle("Inclusão e Alteração de Produtos");
         setLocationRelativeTo(null);
+        
     }
     
     
@@ -30,17 +32,31 @@ public class MmsTelaProdutoIA extends javax.swing.JDialog {
         produto.setMmsIdproduto(Util.strInt(jTxtMMSCodigoP.getText()));
         produto.setMmsNome(jTxtMMSNomeP.getText());
         produto.setMmsDescricao(jTxtMMSDescricao.getText());
-        //produto.setMmsPreco(Util.doubleStr(jTxtMMSPreco.getText()));
+        produto.setMmsPreco(Util.strDouble(jTxtMMSPreco.getText()));
         produto.setMmsConsumo((jTxtMMSconsumo.getText()));
         produto.setMmsMemoria(jTxtMMSMemoria.getText());
         produto.setMmsDimensao(jTxtMMSDimensao.getText());
-        //produto.setMmsPeso(jTxtMMSPeso.getText());
+        produto.setMmsPeso(Util.strInt(jTxtMMSPeso.getText()));
         produto.setMmsMarca(jTxtMMSMarca.getText());
         produto.setMmsGarantia(jTxtMMSGarantia.getText());
         produto.setMmsModelo(jTxtMMSModelo.getText());
         
         return produto;
      }
+    
+     public void beanView(MmsProduto mmsProduto){
+    jTxtMMSCodigoP.setText(Util.intStr(mmsProduto.getMmsIdproduto()));
+    jTxtMMSNomeP.setText(mmsProduto.getMmsNome());
+    jTxtMMSDescricao.setText(mmsProduto.getMmsDescricao());
+    jTxtMMSDimensao.setText(mmsProduto.getMmsDimensao());
+    jTxtMMSGarantia.setText(mmsProduto.getMmsGarantia());
+    jTxtMMSMarca.setText(mmsProduto.getMmsMarca());
+    jTxtMMSMemoria.setText(mmsProduto.getMmsMemoria());
+    jTxtMMSModelo.setText(mmsProduto.getMmsModelo());
+    jTxtMMSPeso.setText(Util.intStr(mmsProduto.getMmsPeso()));
+    jTxtMMSPreco.setText(Util.doubleStr(mmsProduto.getMmsPreco()));
+    jTxtMMSconsumo.setText(mmsProduto.getMmsConsumo());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -239,6 +255,11 @@ public class MmsTelaProdutoIA extends javax.swing.JDialog {
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
         Util.limparCampos(jTxtMMSCodigoP,jTxtMMSDescricao, jTxtMMSDimensao, jTxtMMSGarantia, jTxtMMSMarca, jTxtMMSMemoria, jTxtMMSModelo, jTxtMMSNomeP, jTxtMMSPeso,jTxtMMSconsumo);
+        
+    MmsProduto mmsProduto = viewBean();
+    MmsProdutoDAO mmsProdutoDAO = new MmsProdutoDAO();
+    mmsProdutoDAO.insert(mmsProduto);
+        
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
 
     /**

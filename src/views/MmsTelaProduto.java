@@ -21,8 +21,8 @@ public class MmsTelaProduto extends javax.swing.JDialog {
     MmsProdutoDAO produtoDAO;
     MmsProduto mmsproduto;
     ProdutoControle produtoControle;        
-    private MmsTelaProdutoIA mmsTelaProdutoIA;
-    private boolean incluindo;
+    MmsTelaProdutoIA mmsTelaProdutoIA;
+    
     
     public MmsTelaProduto(java.awt.Frame parent, boolean modal) {  
          super(parent, modal);
@@ -134,28 +134,29 @@ public class MmsTelaProduto extends javax.swing.JDialog {
 
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
           // TODO add your handling code here:
-        MmsTelaProdutoIA mmsTelaProdutoIA = new MmsTelaProdutoIA(null, true);
         mmsTelaProdutoIA.setVisible(true);
-        incluindo = true;
-
+        mmsTelaProdutoIA.setTitle("Incluindo");
+        
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
-        MmsTelaProdutoIA mmsTelaProdutoIA = new MmsTelaProdutoIA(null, true);
-        mmsTelaProdutoIA.setVisible(true);
-        incluindo = false;
+         mmsTelaProdutoIA.setVisible(true);
+        mmsTelaProdutoIA.setTitle("Alterando");
         
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
-        
          if (Util.perguntar("Deseja excluir o registro?") == true) {
             int sel = jTblMmmsTabela2.getSelectedRow();
-            mmsproduto = produtoControle.getBean(sel);
-            produtoDAO.delete(mmsproduto);
+              
+            MmsProduto mmsProduto = produtoControle.getBean(sel);
+            produtoDAO.delete(mmsProduto);
+            
+            
             //atualizar a lista no jtable
             List lista = produtoDAO.listAll();
             produtoControle.setList(lista);
+            Util.mensagem("registro excluido");
         } else {
             Util.mensagem("Exclusão cancelada.");
         }
