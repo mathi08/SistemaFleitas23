@@ -29,6 +29,8 @@ public class Util {
         public static void limparCampos(JComponent... vetComp) {
             for (JComponent componente : vetComp) {
                 if (componente instanceof JTextField) {
+//                    JTextField objeto = (JTextField) componente;
+//                    objeto.setText("");
                 ((JTextField) componente).setText(""); 
                 } else if (componente instanceof JComboBox){
                 ((JComboBox)componente).setSelectedIndex(-1);
@@ -49,6 +51,7 @@ public class Util {
     }
 
     public static boolean perguntar(String cadeia) {
+       //JOptionPane.showConfirmDialog(null, cadeia, "Perguntar", JOptionPane.YES_NO_OPTION);
        int resp =  JOptionPane.showConfirmDialog(null, "Deseja excluir o registro",
        "confirmar", JOptionPane.YES_NO_OPTION);
        if (resp == JOptionPane.YES_OPTION){
@@ -57,16 +60,20 @@ public class Util {
        return false;}      
     }
     public static int strInt(String cad) {
-    if (cad != null && !cad.isEmpty()) {
+    try {
         return Integer.parseInt(cad);
-    } else {
-        // Lida com o caso em que a string está vazia ou nula
-        // Retorne um valor padrão ou lance uma exceção, dependendo dos requisitos.
-        return 0; // Retornando 0 como exemplo; ajuste conforme necessário.
+    } catch (NumberFormatException e) {
+        // Trate a exceção de formato inválido aqui.
+        // Pode retornar um valor padrão ou lançar uma exceção personalizada, dependendo das suas necessidades.
+        return 0; // Retorna 0 como valor padrão em caso de erro.
+    } catch (NullPointerException e) {
+        // Trate a exceção de valor nulo aqui.
+        return 0; // Retorna 0 como valor padrão em caso de erro.
     }
 }
+
     public static String intStr(int num){
-    return Integer.toString(num);
+        return Integer.toString(num);
     }
     public static double strDouble(String cad){
         return Double.parseDouble(cad);

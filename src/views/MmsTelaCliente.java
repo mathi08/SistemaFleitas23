@@ -56,10 +56,8 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
 
         public MmsCliente ViewBean() {
         MmsCliente mmscliente = new MmsCliente();
-        int id = Integer.valueOf(jTxtMMSCodigo.getText());
-        int num = Integer.valueOf(jTxtMMSNumeroCasa.getText());
         
-        mmscliente.setMmsIdcliente(id);
+        mmscliente.setMmsIdcliente(Util.strInt(jTxtMMSCodigo.getText()));
         mmscliente.setMmsNome(jTxtMMSNome.getText());
         mmscliente.setMmsCpf(jFmtMMSCPF.getText());
         mmscliente.setMmsRg(jFmtMMSRG.getText());
@@ -75,7 +73,7 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
         mmscliente.setMmsCep(jFmtMMSCep.getText());
         mmscliente.setMmsEndereco(jTxtMMSEndereco.getText());
         mmscliente.setMmsCidade(jTxtMMSCidade.getText());
-        mmscliente.setMmsNumeroCasa(num);
+        mmscliente.setMmsNumeroCasa(Util.strInt(jTxtMMSNumeroCasa.getText()));
         mmscliente.setMmsNacionalidade(jTxtMMSNacionalidade.getText());
         mmscliente.setMmsCelular(jFmtMMSCelular.getText());
         mmscliente.setMmsTelefoneResidencial(jFmtMMSTelefone.getText());
@@ -381,12 +379,13 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
        Util.habilitar(true,jTxtMMSEndereco, jTxtMMSNacionalidade,jTxtMMSNome, jTxtMMSNumeroCasa, jTxtMMSCodigo,jTxtMMSCidade,jFmtMMSCPF,jFmtMMSCelular,jFmtMMSCep,jFmtMMSDataNascimento,jTxtMMSEmail,jFmtMMSRG,jFmtMMSTelefone, jCboMMSEstadoCivil,jCboMMSSexo, jBtnMMSConfirmar,jBtnMMSCancelar);
        Util.habilitar(false,jBtnMMSAlterar,jBtnMMSExcluir,jBtnMMSPesquisar,jBtnMMSIncluir );
        Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
+       incluindo = true;
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
         Util.habilitar(true,jTxtMMSEndereco, jTxtMMSNacionalidade,jTxtMMSNome, jTxtMMSNumeroCasa, jTxtMMSCodigo,jTxtMMSCidade,jFmtMMSCPF,jFmtMMSCelular,jFmtMMSCep,jFmtMMSDataNascimento,jTxtMMSEmail,jFmtMMSRG,jFmtMMSTelefone, jCboMMSEstadoCivil,jCboMMSSexo, jBtnMMSConfirmar,jBtnMMSCancelar);
         Util.habilitar(false,jBtnMMSAlterar,jBtnMMSExcluir,jBtnMMSPesquisar,jBtnMMSIncluir );
-        Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
+       incluindo = false;
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed

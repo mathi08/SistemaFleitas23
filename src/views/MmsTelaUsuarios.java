@@ -54,9 +54,9 @@ public class MmsTelaUsuarios extends javax.swing.JDialog {
     
      public MmsUsuario ViewBean() {
         MmsUsuario mmsusuarios = new MmsUsuario();
-        int id = Integer.valueOf(jTxtMMSCodigo.getText());
         
-        mmsusuarios.setMmsIdUsuario(id);
+        
+        mmsusuarios.setMmsIdUsuario(Util.strInt(jTxtMMSCodigo.getText()));
         mmsusuarios.setMmsNome(jTxtMMSNomeusuario.getText());
         mmsusuarios.setMmsApelido(jTxtMMSApelido.getText());
         mmsusuarios.setMmsCpf(jFmtMMSCPF.getText());
@@ -70,6 +70,7 @@ public class MmsTelaUsuarios extends javax.swing.JDialog {
    
         mmsusuarios.setMmsSenha(jPswMMSSenha.getText());
         mmsusuarios.setMmsNivel(jCboMMSNivel.getSelectedIndex());
+        
         if(jCheckBox1.isSelected()==true){
         mmsusuarios.setMmsAtivo("S");
         }else{
@@ -343,7 +344,7 @@ public class MmsTelaUsuarios extends javax.swing.JDialog {
         Util.habilitar(true, jTxtMMSCodigo,jTxtMMSApelido,jTxtMMSNomeusuario,jFmtMMSCPF,jFmtMMSNascimentoData,jPswMMSSenha,jCboMMSNivel, jCheckBox1, jBtnMMSCancelar1, jBtnMMSConfirmar1 );
         Util.habilitar(false, jBtnMMSAlterar1, jBtnMMSIncluir1, jBtnMMSPesquisar1, jBtnMMSExcluir1);
         incluindo = false;
-        Util.limparCampos(jTxtMMSCodigo,jTxtMMSApelido, jFmtMMSCPF,jTxtMMSNomeusuario, jFmtMMSNascimentoData, jPswMMSSenha, jCboMMSNivel, jCheckBox1);
+       
     }//GEN-LAST:event_jBtnMMSAlterar1ActionPerformed
 
     private void jBtnMMSPesquisar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSPesquisar1ActionPerformed
