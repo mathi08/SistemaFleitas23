@@ -391,19 +391,18 @@ private MaskFormatter mascaraCPF, mascaraDataNascimento,mascaraRG, mascaraCEP,ma
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
          Util.habilitar(false,jTxtMMSEndereco, jTxtMMSNacionalidade,jTxtMMSNome, jTxtMMSNumeroCasa, jTxtMMSCodigo,jTxtMMSCidade,jFmtMMSCPF,jFmtMMSCelular,jFmtMMSCep,jFmtMMSDataNascimento,jTxtMMSEmail,jFmtMMSRG,jFmtMMSTelefone, jCboMMSEstadoCivil,jCboMMSSexo, jBtnMMSConfirmar,jBtnMMSCancelar);
          Util.habilitar(true,jBtnMMSAlterar,jBtnMMSExcluir,jBtnMMSPesquisar,jBtnMMSIncluir );
-         Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
+         
        
         MmsCliente mmsCliente = ViewBean();
        
        MmsClienteDAO mmsClienteDAO = new MmsClienteDAO();
-       mmsClienteDAO.insert(mmsCliente);
-       
         if(incluindo == true){
             mmsClienteDAO.insert(mmsCliente);
         }else{
             mmsClienteDAO.update(mmsCliente);
         }
        
+        Util.limparCampos(jTxtMMSCidade, jTxtMMSCodigo, jTxtMMSEmail, jTxtMMSEndereco, jTxtMMSNacionalidade, jTxtMMSNome,jTxtMMSNumeroCasa, jFmtMMSCPF, jFmtMMSCelular, jFmtMMSCep, jFmtMMSDataNascimento, jFmtMMSRG, jFmtMMSTelefone, jCboMMSEstadoCivil, jCboMMSSexo);
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
 
     private void jBtnMMSCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSCancelarActionPerformed

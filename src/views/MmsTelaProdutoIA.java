@@ -254,12 +254,12 @@ public class MmsTelaProdutoIA extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnMMSCancelarActionPerformed
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
-        Util.limparCampos(jTxtMMSCodigoP,jTxtMMSDescricao, jTxtMMSDimensao, jTxtMMSGarantia, jTxtMMSMarca, jTxtMMSMemoria, jTxtMMSModelo, jTxtMMSNomeP, jTxtMMSPeso,jTxtMMSconsumo);
-        
+
     MmsProduto mmsProduto = viewBean();
     MmsProdutoDAO mmsProdutoDAO = new MmsProdutoDAO();
-    mmsProdutoDAO.insert(mmsProduto);
-        
+    mmsProdutoDAO.insert(mmsProduto);        
+    
+    Util.limparCampos(jTxtMMSCodigoP,jTxtMMSDescricao, jTxtMMSDimensao, jTxtMMSGarantia, jTxtMMSMarca, jTxtMMSMemoria, jTxtMMSModelo, jTxtMMSNomeP, jTxtMMSPeso,jTxtMMSconsumo);  
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
 
     /**

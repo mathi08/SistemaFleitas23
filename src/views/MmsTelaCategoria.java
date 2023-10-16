@@ -17,12 +17,13 @@ import tools.Util;
  * @author u07875284120
  */
 public class MmsTelaCategoria extends javax.swing.JDialog {
-        
+
+   
     MmsCategoriaDAO categoriaDAO;
     MmsCategoria mmscategoria;
     ControleCategoria controlecategoria;
     MmsTelaCategoriaIA mmsTelaCategoriaIA;
-    private boolean incluindo;
+    boolean incluindo;
     
     /**
      * Creates new form MmsTelCategoria
@@ -32,9 +33,9 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         initComponents();
         setTitle("Categoria");
         setLocationRelativeTo(null);
+         
     
-    
-        mmsTelaCategoriaIA = new MmsTelaCategoriaIA(null, true);
+
         controlecategoria = new ControleCategoria();
         categoriaDAO = new MmsCategoriaDAO();
         List lista = categoriaDAO.listAll();
@@ -142,20 +143,23 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
         incluindo = true;
         
-        mmsTelaCategoriaIA.setVisible(true);
+        this.mmsTelaCategoriaIA.setVisible(true);
         mmsTelaCategoriaIA.setTitle("Incluindo");
         
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
          int sel = jTblMMSTabela.getSelectedRow();
+         incluindo = false;
        
         MmsCategoria mmscategoria = controlecategoria.getBean(sel);
         mmsTelaCategoriaIA.beanView(mmscategoria);
+        MmsTelaCategoriaIA mmsTelaCategoriaIA = new MmsTelaCategoriaIA(incluindo);
 
-        mmsTelaCategoriaIA.setVisible(true);
+
+        this.mmsTelaCategoriaIA.setVisible(true);
         mmsTelaCategoriaIA.setTitle("Alterando");
-        incluindo = false;
+       
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
@@ -217,7 +221,11 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
             }
         });
     }
-
+    public boolean incluindo(){
+        return incluindo;
+    };
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnMMSAlterar;
     private javax.swing.JButton jBtnMMSExcluir;

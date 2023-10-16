@@ -15,19 +15,26 @@ import views.MmsTelaCategoria;
  * @author halom
  */
 public class MmsTelaCategoriaIA extends javax.swing.JDialog {
-        
+ 
+        boolean incluir;
+        MmsTelaCategoria mmsTelaCategoria;
     /**
      * Creates new form MmsTelaCategoriaIA
      */
     public MmsTelaCategoriaIA(java.awt.Frame parent, boolean modal) {
          super(parent, modal);
         initComponents();
-        setTitle("Clientes Inclusão e Alteração");
         setLocationRelativeTo(null);
         
     }
 
-    
+ public MmsTelaCategoriaIA(boolean incluindo) {
+    // Faça algo com a variável booleana recebida, se necessário.
+    this.incluir = incluindo;
+    initComponents();
+}
+
+
 
     
     
@@ -160,11 +167,18 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnMMSCancelarActionPerformed
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
-        Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca);
-    
+        if(incluir == true){
         MmsCategoria mmsCategoria = viewBean();
         MmsCategoriaDAO mmsCategoriaDAO = new MmsCategoriaDAO();
         mmsCategoriaDAO.insert(mmsCategoria);
+        } else{
+            
+        MmsCategoria mmsCategoria = viewBean();
+        MmsCategoriaDAO mmsCategoriaDAO = new MmsCategoriaDAO();
+        mmsCategoriaDAO.update(mmsCategoria);
+        }
+        
+        Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca);
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
 
     /**

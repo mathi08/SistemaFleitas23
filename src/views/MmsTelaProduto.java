@@ -22,6 +22,7 @@ public class MmsTelaProduto extends javax.swing.JDialog {
     MmsProduto mmsproduto;
     ProdutoControle produtoControle;        
     MmsTelaProdutoIA mmsTelaProdutoIA;
+    boolean incluindo;
     
     
     public MmsTelaProduto(java.awt.Frame parent, boolean modal) {  
@@ -140,7 +141,17 @@ public class MmsTelaProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
-         mmsTelaProdutoIA.setVisible(true);
+         int sel = jTblMmmsTabela2.getSelectedRow();
+         incluindo = false;
+       
+        MmsProduto mmsProduto = produtoControle.getBean(sel);
+        mmsTelaProdutoIA.beanView(mmsProduto);
+        
+        this.mmsTelaProdutoIA.setVisible(true);
+        mmsTelaProdutoIA.setTitle("Alterando");
+       
+        
+        mmsTelaProdutoIA.setVisible(true);
         mmsTelaProdutoIA.setTitle("Alterando");
         
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed

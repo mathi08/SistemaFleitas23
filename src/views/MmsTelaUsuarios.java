@@ -309,7 +309,7 @@ public class MmsTelaUsuarios extends javax.swing.JDialog {
     private void jBtnMMSConfirmar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmar1ActionPerformed
         Util.habilitar(false, jTxtMMSCodigo,jTxtMMSApelido,jTxtMMSNomeusuario,jFmtMMSCPF,jFmtMMSNascimentoData,jPswMMSSenha,jCboMMSNivel, jCheckBox1, jBtnMMSCancelar1, jBtnMMSConfirmar1 );
         Util.habilitar(true, jBtnMMSAlterar1, jBtnMMSIncluir1, jBtnMMSPesquisar1, jBtnMMSExcluir1);
-        Util.limparCampos(jTxtMMSCodigo,jTxtMMSApelido, jFmtMMSCPF,jTxtMMSNomeusuario, jFmtMMSNascimentoData, jPswMMSSenha, jCboMMSNivel, jCheckBox1);
+      
 
         
         MmsUsuario mmsusuario = ViewBean();
@@ -320,6 +320,7 @@ public class MmsTelaUsuarios extends javax.swing.JDialog {
         } else {
             usuarioDAO.update(mmsusuario);
         }
+         Util.limparCampos(jTxtMMSCodigo,jTxtMMSApelido, jFmtMMSCPF,jTxtMMSNomeusuario, jFmtMMSNascimentoData, jPswMMSSenha, jCboMMSNivel, jCheckBox1);
     }//GEN-LAST:event_jBtnMMSConfirmar1ActionPerformed
 
     private void jBtnMMSExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluir1ActionPerformed
