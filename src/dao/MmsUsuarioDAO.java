@@ -8,6 +8,7 @@ package dao;
 import bean.MmsUsuario;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -15,6 +16,20 @@ import org.hibernate.criterion.Restrictions;
  * @author u07875284120
  */
 public class MmsUsuarioDAO extends DAO_Abstract {
+    
+    public MmsUsuario LoginUsuario(String apelidoUsuario, String senha) {
+        session.beginTransaction();
+
+        Query query = session.createQuery("FROM MmsUsuario WHERE mmsApelido = :mms_apelido AND mmsSenha = :mms_senha");
+        query.setParameter("mms_apelido", apelidoUsuario);
+        query.setParameter("mms_senha", senha);
+
+        MmsUsuario mmsusuario = (MmsUsuario) query.uniqueResult();
+
+        session.getTransaction().commit();
+
+        return mmsusuario;
+    }
 
     @Override
     public void insert(Object object) {

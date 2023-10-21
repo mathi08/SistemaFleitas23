@@ -6,20 +6,33 @@
 package views;
 
 
+import bean.MmsUsuario;
+import dao.MmsUsuarioDAO;
 import javax.swing.JOptionPane;
+import tools.Util;
 
 /**
  *
  * @author carlo
  */
 public class JFrmMmsLogin extends javax.swing.JFrame {
-    String usuario = "Mathias";
-    String senha = "12345";
-    jFrmMenu JFrmMenu = new jFrmMenu();
     public JFrmMmsLogin() {
                initComponents();
         setLocationRelativeTo(null);
     }
+    
+     public MmsUsuario viewBean() {
+        String username = jTxtMmsUsuario.getText();
+        String password = new String(jPwfMmsSenha.getPassword());
+
+        MmsUsuario mmsusuarios = new MmsUsuario();
+        mmsusuarios.setMmsApelido(username);
+        mmsusuarios.setMmsSenha(password);
+
+        return mmsusuarios;
+    }
+     
+        private int contador = 0;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,11 +140,28 @@ public class JFrmMmsLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jPwfMmsSenhaActionPerformed
 
     private void jBtnMmsConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMmsConfirmarActionPerformed
-    if(jTxtMmsUsuario.getText().equals(usuario) && jPwfMmsSenha.getText().equals(senha)){
-    JFrmMenu.setVisible(true);       // TODO add
-        }else{
-     System.out.println("Falha no Login");
-}  
+    String apelido_usuario = jTxtMmsUsuario.getText();
+        String senha = new String(jPwfMmsSenha.getPassword());
+
+        MmsUsuarioDAO mmsusuarioDAO = new MmsUsuarioDAO();
+
+        if (mmsusuarioDAO.LoginUsuario(apelido_usuario, senha) != null) {
+            Util.mensagem("Login efetuado!");
+
+            jFrmMenu jfrmMenu = new jFrmMenu();
+            jfrmMenu.setVisible(true);
+            JFrmMmsLogin.this.dispose();
+
+            contador = 0;
+        } else {
+            contador++;
+            Util.mensagem("Informações invalidas! Tentativa(s) " + contador+ "/3");
+
+            if (contador >= 3) {
+                Util.mensagem("Número máximo de tentativas excedidas! O programa será encerrado.");
+                System.exit(0);
+            }
+        }
     }//GEN-LAST:event_jBtnMmsConfirmarActionPerformed
 
     private void jBtnMmsCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMmsCancelarActionPerformed
