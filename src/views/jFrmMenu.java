@@ -6,7 +6,10 @@
 package views;
 
 import javax.swing.text.MaskFormatter;
-
+import query.MmsTelaConsultaUsuario;
+import query.MmsTelaConsultaVendas;
+import query.MmsTelaConsultaClientes;
+import query.MmsTelaConsultaProdutos;
 /**
  *
  * @author halom
@@ -55,6 +58,11 @@ public class jFrmMenu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMnuMovimento = new javax.swing.JMenu();
         jMnuVendas = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -217,6 +225,42 @@ public class jFrmMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMnuMovimento);
 
+        jMenu1.setText("Consultas");
+
+        jMenuItem4.setText("Conulta Clientes");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Consulta Usuários");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("Consulta Produtos");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText(" Consulta Vendas");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -298,6 +342,27 @@ public class jFrmMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnClientesActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        MmsTelaConsultaClientes mmsTelaConsultaClientes = new MmsTelaConsultaClientes(null, true);
+        mmsTelaConsultaClientes.setVisible(true);
+   
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        MmsTelaConsultaUsuario mmsTelaConsultaUsuario = new MmsTelaConsultaUsuario(null, true);
+        mmsTelaConsultaUsuario.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        MmsTelaConsultaProdutos mmsTelaConsultaProdutos = new MmsTelaConsultaProdutos(null, true);
+        mmsTelaConsultaProdutos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        MmsTelaConsultaVendas mmsTelaConsultaVendas = new MmsTelaConsultaVendas(null, true);
+        mmsTelaConsultaVendas.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -340,10 +405,15 @@ public class jFrmMenu extends javax.swing.JFrame {
     private javax.swing.JButton jBtnProdutos;
     private javax.swing.JButton jBtnUsuarios;
     private javax.swing.JButton jBtnVendas;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMnuClientes;
     private javax.swing.JMenu jMnuMovimento;
     private javax.swing.JMenu jMnuPrincipal;

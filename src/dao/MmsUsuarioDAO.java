@@ -9,6 +9,7 @@ import bean.MmsUsuario;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -74,6 +75,37 @@ public class MmsUsuarioDAO extends DAO_Abstract {
         session.getTransaction().commit();
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
     }
+        public List listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsUsuario.class);
+        criteria.add(Restrictions.like("mmsNome", "%" + nome+ "%"));
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
     
+    
+}
+     public List listCpf(String Cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsUsuario.class);
+        criteria.add(Restrictions.like("mmsCpf", "%" + Cpf+ "%"));
+        List results = criteria.list();
+        session.getTransaction().commit();  
+        return results;
+     }    
+    public List listNomeCpf(String Nome, String Cpf) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsUsuario.class);
+        criteria.add(Restrictions.like("mmsNome", "%" + Nome+ "%"));        
+        criteria.add(Restrictions.like("mmsCpf", "%" + Cpf+ "%"));
+
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+        
+        
 }
 
