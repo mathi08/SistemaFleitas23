@@ -6,7 +6,6 @@
 package query;
 import dao.MmsUsuarioDAO;
 import java.util.List;
-import views.MmsTelaUsuarios;
 import tools.UsuarioControle;
 
 /**
@@ -15,7 +14,6 @@ import tools.UsuarioControle;
  */
 public class MmsTelaConsultaUsuario extends javax.swing.JDialog {
     
-    MmsTelaUsuarios mmsTelaUsuarios;
     UsuarioControle usuarioControle;
     MmsUsuarioDAO mmsUsuarioDAO;
 

@@ -60,4 +60,35 @@ public class MmsClienteDAO extends DAO_Abstract {
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
     }
     
+     public List listRG(String rg) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsCliente.class);
+        criteria.add(Restrictions.like("mmsRg", "%" + rg+ "%"));
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+     public List listSexo(int sexo) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsCliente.class);
+        criteria.add(Restrictions.eq("mmsSexo", sexo));
+        List results = criteria.list();
+        session.getTransaction().commit();  
+        return results;
+     }    
+    public List listRgSexo(String rg, int sexo) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsCliente.class);
+        criteria.add(Restrictions.like("mmsRg", "%" + rg + "%"));
+        criteria.add(Restrictions.eq("mmsSexo", sexo));
+
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+    
 }

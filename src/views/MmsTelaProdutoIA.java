@@ -259,7 +259,7 @@ public class MmsTelaProdutoIA extends javax.swing.JDialog {
     MmsProdutoDAO mmsProdutoDAO = new MmsProdutoDAO();
     mmsProdutoDAO.insert(mmsProduto);        
     
-    Util.limparCampos(jTxtMMSCodigoP,jTxtMMSDescricao, jTxtMMSDimensao, jTxtMMSGarantia, jTxtMMSMarca, jTxtMMSMemoria, jTxtMMSModelo, jTxtMMSNomeP, jTxtMMSPeso,jTxtMMSconsumo);  
+         Util.limparCampos(jTxtMMSCodigoP,jTxtMMSDescricao, jTxtMMSDimensao, jTxtMMSGarantia, jTxtMMSMarca, jTxtMMSMemoria, jTxtMMSModelo, jTxtMMSNomeP, jTxtMMSPeso,jTxtMMSconsumo);  
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
 
     /**

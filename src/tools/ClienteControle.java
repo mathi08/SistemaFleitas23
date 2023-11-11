@@ -45,10 +45,10 @@ public class ClienteControle extends AbstractTableModel {
             return cliente.getMmsNome();
         }
         if (columnIndex == 2) {
-            return cliente.getMmsEmail();
+            return cliente.getMmsRg();
         }
         if (columnIndex == 3) {
-            return cliente.getMmsCpf();
+            return cliente.getMmsSexo();
         }
         return "";
     }
@@ -65,10 +65,10 @@ public class ClienteControle extends AbstractTableModel {
             return "Nome";
         }
         if (columnIndex == 2) {
-            return "Email";
+            return "RG";
         }
         if (columnIndex == 3) {
-            return "CPF";
+            return "Sexo";
         }
         return "";
     }

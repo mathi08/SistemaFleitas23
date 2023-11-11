@@ -60,5 +60,37 @@ public class MmsProdutoDAO extends DAO_Abstract {
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
     }
     
+     public List listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsProduto.class);
+        criteria.add(Restrictions.like("mmsNome", "%" + nome + "%"));
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+     public List listPreco(Double preco) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsProduto.class);
+        criteria.add(Restrictions.ge("mmsPreco", preco));
+        List results = criteria.list();
+        session.getTransaction().commit();  
+        return results;
+     }    
+    public List listNomePreco(String nome, Double preco) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsProduto.class);
+        criteria.add(Restrictions.like("mmsNome", "%" + nome + "%"));
+        criteria.add(Restrictions.ge("mmsPreco", preco));
+
+
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+    
 }
 

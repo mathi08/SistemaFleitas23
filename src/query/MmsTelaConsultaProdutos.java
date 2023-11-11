@@ -4,19 +4,34 @@
  * and open the template in the editor.
  */
 package query;
-
+import dao.MmsProdutoDAO;
+import bean.MmsProduto;
+import java.util.List;
+import tools.ProdutoControle;
+import tools.Util;
 /**
  *
  * @author halom
  */
 public class MmsTelaConsultaProdutos extends javax.swing.JDialog {
 
+    MmsProdutoDAO mmsProdutoDAO;
+    MmsProduto mmsProduto;
+    ProdutoControle produtoControle;
+    
     /**
      * Creates new form TelaMmsConsultaProdutos
      */
     public MmsTelaConsultaProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Consulta de Produtos");
+        produtoControle = new ProdutoControle();
+        mmsProdutoDAO = new MmsProdutoDAO();
+        List lista = mmsProdutoDAO.listAll();
+        produtoControle.setList(lista);
+        jTable1.setModel(produtoControle); 
     }
 
     /**
@@ -28,21 +43,128 @@ public class MmsTelaConsultaProdutos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTxtMmsNomeConsulta = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtMmsPrecoConsulta = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setText("Nome");
+
+        jLabel2.setText("Preço");
+
+        jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxtMmsNomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTxtMmsPrecoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(34, 34, 34))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtMmsNomeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtMmsPrecoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if( jTxtMmsNomeConsulta.getText().equals("") && jTxtMmsPrecoConsulta.getText().equals("")){
+        produtoControle = new ProdutoControle();
+        List lista = mmsProdutoDAO.listAll();
+        produtoControle.setList(lista);
+        jTable1.setModel(produtoControle);
+    } else{ 
+        if(!jTxtMmsNomeConsulta.getText().equals("") && !jTxtMmsPrecoConsulta.getText().equals("")  ){
+        List results = mmsProdutoDAO.listNomePreco(jTxtMmsNomeConsulta.getText(), Util.strDouble(jTxtMmsPrecoConsulta.getText()));
+        produtoControle = new ProdutoControle();
+        produtoControle.setList(results);
+        jTable1.setModel(produtoControle);
+    
+    } else{ 
+        if(! jTxtMmsNomeConsulta.getText().equals("")){
+        List lista = mmsProdutoDAO.listNome(jTxtMmsNomeConsulta.getText());
+        produtoControle = new ProdutoControle();
+        produtoControle.setList(lista);
+        jTable1.setModel(produtoControle);
+    } 
+    if(! jTxtMmsPrecoConsulta.getText().equals("")){
+        List lista = mmsProdutoDAO.listPreco(Util.strDouble(jTxtMmsPrecoConsulta.getText()));
+        produtoControle = new ProdutoControle();
+        produtoControle.setList(lista);
+        jTable1.setModel(produtoControle);
+    
+    }
+        }   
+    }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -88,5 +210,13 @@ public class MmsTelaConsultaProdutos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTxtMmsNomeConsulta;
+    private javax.swing.JTextField jTxtMmsPrecoConsulta;
     // End of variables declaration//GEN-END:variables
 }
