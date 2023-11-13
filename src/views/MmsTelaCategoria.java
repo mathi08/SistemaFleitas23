@@ -22,7 +22,7 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     MmsCategoriaDAO categoriaDAO;
     MmsCategoria mmscategoria;
     ControleCategoria controlecategoria;
-    MmsTelaCategoriaIA mmsTelaCategoriaIA;
+    MmsTelaCategoriaIA mmsTelaCategoriaIA   ;
     boolean incluindo;
     
     /**
@@ -33,9 +33,6 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         initComponents();
         setTitle("Categoria");
         setLocationRelativeTo(null);
-         
-    
-
         controlecategoria = new ControleCategoria();
         categoriaDAO = new MmsCategoriaDAO();
         List lista = categoriaDAO.listAll();
@@ -141,25 +138,13 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
-        incluindo = true;
         
-        this.mmsTelaCategoriaIA.setVisible(true);
-        mmsTelaCategoriaIA.setTitle("Incluindo");
-        
+        mmsTelaCategoriaIA.setVisible(true);
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
-         int sel = jTblMMSTabela.getSelectedRow();
-         incluindo = false;
-       
-        MmsCategoria mmscategoria = controlecategoria.getBean(sel);
-        mmsTelaCategoriaIA.beanView(mmscategoria);
-        MmsTelaCategoriaIA mmsTelaCategoriaIA = new MmsTelaCategoriaIA(incluindo);
-
-
-        this.mmsTelaCategoriaIA.setVisible(true);
-        mmsTelaCategoriaIA.setTitle("Alterando");
-       
+        mmsTelaCategoriaIA.setVisible(true);
+        mmsTelaCategoriaIA.setTitle("Alterar");
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed

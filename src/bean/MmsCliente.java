@@ -1,5 +1,5 @@
 package bean;
-// Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
+// Generated 13/11/2023 18:58:12 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -39,23 +39,6 @@ public class MmsCliente  implements java.io.Serializable {
     public MmsCliente() {
     }
 
-	
-    public MmsCliente(int mmsIdcliente, String mmsNome, String mmsCpf, String mmsRg, String mmsEmail, String mmsCep, String mmsEndereco, String mmsCidade, int mmsNumeroCasa, String mmsNacionalidade, String mmsCelular, String mmsTelefoneResidencial, int mmsEstadoCivil, int mmsSexo) {
-        this.mmsIdcliente = mmsIdcliente;
-        this.mmsNome = mmsNome;
-        this.mmsCpf = mmsCpf;
-        this.mmsRg = mmsRg;
-        this.mmsEmail = mmsEmail;
-        this.mmsCep = mmsCep;
-        this.mmsEndereco = mmsEndereco;
-        this.mmsCidade = mmsCidade;
-        this.mmsNumeroCasa = mmsNumeroCasa;
-        this.mmsNacionalidade = mmsNacionalidade;
-        this.mmsCelular = mmsCelular;
-        this.mmsTelefoneResidencial = mmsTelefoneResidencial;
-        this.mmsEstadoCivil = mmsEstadoCivil;
-        this.mmsSexo = mmsSexo;
-    }
     public MmsCliente(int mmsIdcliente, String mmsNome, String mmsCpf, String mmsRg, Date mmsDataNasc, String mmsEmail, String mmsCep, String mmsEndereco, String mmsCidade, int mmsNumeroCasa, String mmsNacionalidade, String mmsCelular, String mmsTelefoneResidencial, int mmsEstadoCivil, int mmsSexo) {
        this.mmsIdcliente = mmsIdcliente;
        this.mmsNome = mmsNome;
@@ -117,7 +100,7 @@ public class MmsCliente  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="mms_dataNasc", length=10)
+    @Column(name="mms_dataNasc", nullable=false, length=10)
     public Date getMmsDataNasc() {
         return this.mmsDataNasc;
     }

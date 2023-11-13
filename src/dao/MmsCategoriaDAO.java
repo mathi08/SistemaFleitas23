@@ -60,5 +60,36 @@ public class MmsCategoriaDAO extends DAO_Abstract {
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
     }
     
+     public List listConsumoMin(int consumoMin) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsCategoria.class);
+        criteria.add(Restrictions.eq("mmsConsumoMinimo", consumoMin));
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+     public List listSli(String Sli) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsCategoria.class);
+        criteria.add(Restrictions.like("mmsSliCrossFire", "%" + Sli+ "%"));
+        List results = criteria.list();
+        session.getTransaction().commit();  
+        return results;
+     }    
+    public List listConsumoSli(int consumoMin, String Sli) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsCategoria.class);
+         criteria.add(Restrictions.eq("mmsConsumoMinimo", consumoMin));
+        criteria.add(Restrictions.like("mmsSliCrossFire", "%" + Sli+ "%"));
+
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+    
 }
 

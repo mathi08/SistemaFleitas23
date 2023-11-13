@@ -1,5 +1,5 @@
 package bean;
-// Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
+// Generated 13/11/2023 18:58:12 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -21,15 +21,23 @@ public class MmsCategoria  implements java.io.Serializable {
      private String mmsNome;
      private String mmsDescricao;
      private String mmsTipoPlaca;
+     private int mmsConsumoMinimo;
+     private int mmsConsumoMaximo;
+     private String mmsSliCrossFire;
+     private String mmsTempMedia;
 
     public MmsCategoria() {
     }
 
-    public MmsCategoria(int mmsIdcategoria, String mmsNome, String mmsDescricao, String mmsTipoPlaca) {
+    public MmsCategoria(int mmsIdcategoria, String mmsNome, String mmsDescricao, String mmsTipoPlaca, int mmsConsumoMinimo, int mmsConsumoMaximo, String mmsSliCrossFire, String mmsTempMedia) {
        this.mmsIdcategoria = mmsIdcategoria;
        this.mmsNome = mmsNome;
        this.mmsDescricao = mmsDescricao;
        this.mmsTipoPlaca = mmsTipoPlaca;
+       this.mmsConsumoMinimo = mmsConsumoMinimo;
+       this.mmsConsumoMaximo = mmsConsumoMaximo;
+       this.mmsSliCrossFire = mmsSliCrossFire;
+       this.mmsTempMedia = mmsTempMedia;
     }
    
      @Id 
@@ -72,6 +80,46 @@ public class MmsCategoria  implements java.io.Serializable {
     
     public void setMmsTipoPlaca(String mmsTipoPlaca) {
         this.mmsTipoPlaca = mmsTipoPlaca;
+    }
+
+    
+    @Column(name="mms_consumoMinimo", nullable=false)
+    public int getMmsConsumoMinimo() {
+        return this.mmsConsumoMinimo;
+    }
+    
+    public void setMmsConsumoMinimo(int mmsConsumoMinimo) {
+        this.mmsConsumoMinimo = mmsConsumoMinimo;
+    }
+
+    
+    @Column(name="mms_consumoMaximo", nullable=false)
+    public int getMmsConsumoMaximo() {
+        return this.mmsConsumoMaximo;
+    }
+    
+    public void setMmsConsumoMaximo(int mmsConsumoMaximo) {
+        this.mmsConsumoMaximo = mmsConsumoMaximo;
+    }
+
+    
+    @Column(name="mms_SLI_CrossFire", nullable=false, length=1)
+    public String getMmsSliCrossFire() {
+        return this.mmsSliCrossFire;
+    }
+    
+    public void setMmsSliCrossFire(String mmsSliCrossFire) {
+        this.mmsSliCrossFire = mmsSliCrossFire;
+    }
+
+    
+    @Column(name="mms_TempMedia", nullable=false, length=45)
+    public String getMmsTempMedia() {
+        return this.mmsTempMedia;
+    }
+    
+    public void setMmsTempMedia(String mmsTempMedia) {
+        this.mmsTempMedia = mmsTempMedia;
     }
 
 

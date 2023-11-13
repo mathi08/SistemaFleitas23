@@ -44,9 +44,12 @@ public class ControleCategoria extends AbstractTableModel {
             return categoria.getMmsNome();
         }
         if (columnIndex == 2) {
-            return categoria.getMmsTipoPlaca();
+            return categoria.getMmsSliCrossFire();
         }
-     
+        if (columnIndex == 3) {
+            return categoria.getMmsConsumoMinimo();
+        }
+        
         return "";
     }
     
@@ -59,11 +62,12 @@ public class ControleCategoria extends AbstractTableModel {
             return "Nome";
         }
         if (columnIndex == 2) {
-            return "Descrição";
+            return "SLI//CrossFire";
         }
         if (columnIndex == 3) {
-            return "Tipo Placa";
+            return "Consumo Minimo";
         }
+        
         return "";
     }
 }

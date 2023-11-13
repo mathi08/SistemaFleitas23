@@ -41,10 +41,10 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_mathias_fleitas"/>
-  <table-filter match-name="mms_usuario"/>
-  <table-filter match-name="mms_vendas_produto"/>
   <table-filter match-name="mms_cliente"/>
-  <table-filter match-name="mms_vendas"/>
-  <table-filter match-name="mms_produto"/>
+  <table-filter match-name="mms_vendas_produto"/>
+  <table-filter match-name="mms_usuario"/>
   <table-filter match-name="mms_categoria"/>
+  <table-filter match-name="mms_produto"/>
+  <table-filter match-name="mms_vendas"/>
 </hibernate-reverse-engineering>

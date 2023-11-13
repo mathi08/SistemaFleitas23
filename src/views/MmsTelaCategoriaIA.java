@@ -44,7 +44,14 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
         categoria.setMmsNome(jTxtMMSNome.getText());
         categoria.setMmsDescricao(jTxtMMSDescricao.getText());
         categoria.setMmsTipoPlaca(jTxtMMSTipoPlaca.getText());
-        
+        categoria.setMmsConsumoMinimo(Util.strInt(jTxtMmsConsumomin.getText()));
+        categoria.setMmsConsumoMaximo(Util.strInt(jTxtMmsconsumoMax.getText()));
+        categoria.setMmsTempMedia(jTxtMmsTempMédia.getText());
+        if(jChbMmsSliCrossfire.isSelected()==true){
+        categoria.setMmsSliCrossFire("S");
+        }else{
+        categoria.setMmsSliCrossFire("N");
+        }    
         return categoria;
     }
     
@@ -53,6 +60,14 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
     jTxtMMSDescricao.setText(mmsCategoria.getMmsDescricao());
     jTxtMMSNome.setText(mmsCategoria.getMmsNome());
     jTxtMMSTipoPlaca.setText(mmsCategoria.getMmsTipoPlaca());
+    jTxtMmsConsumomin.setText(Util.intStr(mmsCategoria.getMmsConsumoMinimo()));
+    jTxtMmsconsumoMax.setText(Util.intStr(mmsCategoria.getMmsConsumoMaximo()));
+    jTxtMmsTempMédia.setText(mmsCategoria.getMmsTempMedia());
+     if ( mmsCategoria.getMmsSliCrossFire().equals("S") == true){
+           jChbMmsSliCrossfire.setSelected(true);
+        } else {
+        jChbMmsSliCrossfire.setSelected(false);    
+        }
         
     }
     /**
@@ -75,6 +90,14 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
         jTxtMMSTipoPlaca = new javax.swing.JTextField();
         jBtnMMSConfirmar = new javax.swing.JButton();
         jBtnMMSCancelar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTxtMmsConsumomin = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTxtMmsconsumoMax = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTxtMmsTempMédia = new javax.swing.JTextField();
+        jChbMmsSliCrossfire = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,59 +126,108 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setText("Consumo Min.");
+
+        jLabel7.setText("Consumo Max.");
+
+        jTxtMmsconsumoMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtMmsconsumoMaxActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("SLI // CrossFire");
+
+        jLabel9.setText("Temperatura Média");
+
+        jChbMmsSliCrossfire.setText("Ativo?");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(175, 175, 175))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jTxtMMSDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTxtMMSNome, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTxtMMSCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBtnMMSConfirmar)
-                            .addComponent(jTxtMMSTipoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addComponent(jBtnMMSCancelar)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBtnMMSConfirmar)
+                                .addGap(51, 51, 51)
+                                .addComponent(jBtnMMSCancelar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTxtMMSDescricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTxtMMSNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                    .addComponent(jTxtMMSCodigo, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTxtMMSTipoPlaca, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jTxtMmsConsumomin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jTxtMmsconsumoMax, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTxtMmsTempMédia, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jChbMmsSliCrossfire, javax.swing.GroupLayout.Alignment.LEADING)))))
+                .addGap(99, 202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtMMSCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtMMSNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtMMSDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtMMSTipoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTxtMmsConsumomin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtMmsconsumoMax, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtMmsTempMédia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtMMSCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtMMSNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtMMSDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTxtMMSTipoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jChbMmsSliCrossfire)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnMMSConfirmar)
                     .addComponent(jBtnMMSCancelar))
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -163,23 +235,22 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
 
     private void jBtnMMSCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSCancelarActionPerformed
        setVisible(false);
-        Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca);
+        Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca, jTxtMmsConsumomin, jTxtMmsconsumoMax, jTxtMmsTempMédia, jChbMmsSliCrossfire);
     }//GEN-LAST:event_jBtnMMSCancelarActionPerformed
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
-        if(incluir == true){
+        
         MmsCategoria mmsCategoria = viewBean();
         MmsCategoriaDAO mmsCategoriaDAO = new MmsCategoriaDAO();
         mmsCategoriaDAO.insert(mmsCategoria);
-        } else{
-            
-        MmsCategoria mmsCategoria = viewBean();
-        MmsCategoriaDAO mmsCategoriaDAO = new MmsCategoriaDAO();
-        mmsCategoriaDAO.update(mmsCategoria);
-        }
         
-        Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca);
+        
+        Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca, jTxtMmsConsumomin, jTxtMmsconsumoMax, jTxtMmsTempMédia, jChbMmsSliCrossfire);
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed
+
+    private void jTxtMmsconsumoMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtMmsconsumoMaxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtMmsconsumoMaxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,14 +297,22 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnMMSCancelar;
     private javax.swing.JButton jBtnMMSConfirmar;
+    private javax.swing.JCheckBox jChbMmsSliCrossfire;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTxtMMSCodigo;
     private javax.swing.JTextField jTxtMMSDescricao;
     private javax.swing.JTextField jTxtMMSNome;
     private javax.swing.JTextField jTxtMMSTipoPlaca;
+    private javax.swing.JTextField jTxtMmsConsumomin;
+    private javax.swing.JTextField jTxtMmsTempMédia;
+    private javax.swing.JTextField jTxtMmsconsumoMax;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,5 @@
 package bean;
-// Generated 22/09/2023 15:20:10 by Hibernate Tools 4.3.1
+// Generated 13/11/2023 18:58:12 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -86,7 +86,7 @@ public class MmsUsuario  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="mms_dataNasc", nullable=false, length=45)
+    @Column(name="mms_dataNasc", nullable=false, length=10)
     public Date getMmsDataNasc() {
         return this.mmsDataNasc;
     }
