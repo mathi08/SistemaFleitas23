@@ -6,6 +6,7 @@
 package dao;
 
 import bean.MmsVendas;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -59,6 +60,37 @@ public class MmsVendasDAO extends DAO_Abstract {
         session.getTransaction().commit();
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
     }
+    
+     public List listData(Date data) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsVendas.class);
+        criteria.add(Restrictions.eq("mmsDataVenda", data ));
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
+     public List listValor(Double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsVendas.class);
+        criteria.add(Restrictions.ge("mmsValor", valor));
+        List results = criteria.list();
+        session.getTransaction().commit();  
+        return results;
+     }    
+    public List listDataValor(Date data, Double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(MmsVendas.class);
+        criteria.add(Restrictions.eq("mmsDataVenda", data ));        
+        criteria.add(Restrictions.ge("mmsValor", valor));;
+
+        List results = criteria.list();
+        session.getTransaction().commit();
+        return results;
+    
+    
+}
     
 }
 

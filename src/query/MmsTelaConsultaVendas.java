@@ -4,6 +4,15 @@
  * and open the template in the editor.
  */
 package query;
+import dao.MmsVendasDAO;
+import java.util.List;
+import tools.VendaControle;
+import bean.MmsVendas;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import tools.Util;
+
 
 /**
  *
@@ -11,12 +20,24 @@ package query;
  */
 public class MmsTelaConsultaVendas extends javax.swing.JDialog {
 
+     VendaControle vendaControle;
+    MmsVendasDAO mmsVendasDAO;
+    MmsVendas mmsVendas;
+    
+    
     /**
      * Creates new form MmsTelaConsultaVendas
      */
     public MmsTelaConsultaVendas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Consulta de Vendas");
+        vendaControle = new VendaControle();
+        mmsVendasDAO = new MmsVendasDAO();
+        List lista = mmsVendasDAO.listAll();
+        vendaControle.setList(lista);
+        jTable1.setModel(vendaControle); 
     }
 
     /**
@@ -28,21 +49,145 @@ public class MmsTelaConsultaVendas extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTxtMmsDataVendaConsulta = new javax.swing.JTextField();
+        jTxtMmsValorVendaConsulta = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setText("Data Venda");
+
+        jLabel2.setText("Valor de Venda");
+
+        jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("(Igual ou Maior)");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jTxtMmsDataVendaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTxtMmsValorVendaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(71, 71, 71))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtMmsDataVendaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtMmsValorVendaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if( jTxtMmsDataVendaConsulta.getText().equals("") && jTxtMmsValorVendaConsulta.getText().equals("")){
+        vendaControle = new VendaControle();
+        List lista = mmsVendasDAO.listAll();
+        vendaControle.setList(lista);
+        jTable1.setModel(vendaControle);
+    } else{ 
+        if(!jTxtMmsDataVendaConsulta.getText().equals("") && !jTxtMmsValorVendaConsulta.getText().equals("")  ){
+        List lista = null;
+            try {
+                lista = mmsVendasDAO.listDataValor(Util.strDate(jTxtMmsDataVendaConsulta.getText()), Util.strDouble(jTxtMmsValorVendaConsulta.getText()));
+            } catch (ParseException ex) {
+                Logger.getLogger(MmsTelaConsultaVendas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        vendaControle = new VendaControle();
+        vendaControle.setList(lista);
+        jTable1.setModel(vendaControle);
+    
+    } else{
+        if(! jTxtMmsDataVendaConsulta.getText().equals("")){
+        List lista = null;
+            try {
+                lista = mmsVendasDAO.listData(Util.strDate(jTxtMmsDataVendaConsulta.getText()));
+            } catch (ParseException ex) {
+                Logger.getLogger(MmsTelaConsultaVendas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        vendaControle = new VendaControle();
+        vendaControle.setList(lista);
+        jTable1.setModel(vendaControle);
+    } 
+    if(! jTxtMmsValorVendaConsulta.getText().equals("")){
+        List lista = mmsVendasDAO.listValor(Util.strDouble(jTxtMmsValorVendaConsulta.getText()));
+        vendaControle = new VendaControle();
+        vendaControle.setList(lista);
+        jTable1.setModel(vendaControle);
+    
+    }
+        }   
+    }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +232,14 @@ public class MmsTelaConsultaVendas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTxtMmsDataVendaConsulta;
+    private javax.swing.JTextField jTxtMmsValorVendaConsulta;
     // End of variables declaration//GEN-END:variables
 }

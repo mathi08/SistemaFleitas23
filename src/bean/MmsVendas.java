@@ -23,20 +23,20 @@ public class MmsVendas  implements java.io.Serializable {
      private int mmsIdVendas;
      private Integer mmsCliente;
      private Date mmsDataVenda;
-     private String mmsValor;
+     private Double mmsValor;
      private int mmsVendedores;
 
     public MmsVendas() {
     }
 
 	
-    public MmsVendas(int mmsIdVendas, Date mmsDataVenda, String mmsValor, int mmsVendedores) {
+    public MmsVendas(int mmsIdVendas, Date mmsDataVenda, Double mmsValor, int mmsVendedores) {
         this.mmsIdVendas = mmsIdVendas;
         this.mmsDataVenda = mmsDataVenda;
         this.mmsValor = mmsValor;
         this.mmsVendedores = mmsVendedores;
     }
-    public MmsVendas(int mmsIdVendas, Integer mmsCliente, Date mmsDataVenda, String mmsValor, int mmsVendedores) {
+    public MmsVendas(int mmsIdVendas, Integer mmsCliente, Date mmsDataVenda, Double mmsValor, int mmsVendedores) {
        this.mmsIdVendas = mmsIdVendas;
        this.mmsCliente = mmsCliente;
        this.mmsDataVenda = mmsDataVenda;
@@ -78,11 +78,11 @@ public class MmsVendas  implements java.io.Serializable {
 
     
     @Column(name="mms_valor", nullable=false, length=45)
-    public String getMmsValor() {
+    public Double getMmsValor() {
         return this.mmsValor;
     }
     
-    public void setMmsValor(String mmsValor) {
+    public void setMmsValor(Double mmsValor) {
         this.mmsValor = mmsValor;
     }
 

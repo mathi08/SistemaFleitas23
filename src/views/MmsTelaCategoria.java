@@ -22,7 +22,7 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     MmsCategoriaDAO categoriaDAO;
     MmsCategoria mmscategoria;
     ControleCategoria controlecategoria;
-    MmsTelaCategoriaIA mmsTelaCategoriaIA   ;
+    MmsTelaCategoriaIA mmsTelaCategoriaIA;
     boolean incluindo;
     
     /**
@@ -33,6 +33,8 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         initComponents();
         setTitle("Categoria");
         setLocationRelativeTo(null);
+        
+       mmsTelaCategoriaIA = new MmsTelaCategoriaIA(null, true);
         controlecategoria = new ControleCategoria();
         categoriaDAO = new MmsCategoriaDAO();
         List lista = categoriaDAO.listAll();
@@ -138,8 +140,8 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
-        
         mmsTelaCategoriaIA.setVisible(true);
+        mmsTelaCategoriaIA.setTitle("Incluir");
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed

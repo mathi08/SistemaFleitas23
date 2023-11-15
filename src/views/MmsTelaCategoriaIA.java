@@ -28,11 +28,11 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
         
     }
 
- public MmsTelaCategoriaIA(boolean incluindo) {
-    // Faça algo com a variável booleana recebida, se necessário.
-    this.incluir = incluindo;
-    initComponents();
-}
+   
+ 
+
+
+   
 
 
 
