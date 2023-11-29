@@ -34,6 +34,7 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
         List lista = mmsClienteDao.listAll();
         clienteControle.setList(lista);
         jTable1.setModel(clienteControle); 
+        Util.limparCampos(jTxtMmsRgConsulta,jCboSexo);
     }
 
     /**
@@ -51,12 +52,9 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTxtMmsRgConsulta = new javax.swing.JTextField();
-        jTxtMmsSexoConsulta = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jCboSexo = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -97,42 +95,19 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(251, 251, 251));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jCboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino - 0", "Feminino - 1", "Outros - 2" }));
+        jCboSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCboSexoActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Unispace", 0, 10)); // NOI18N
-        jLabel3.setText("0 - Masculino");
-
-        jLabel4.setFont(new java.awt.Font("Unispace", 0, 10)); // NOI18N
-        jLabel4.setText("1 - Feminino");
-
-        jLabel5.setFont(new java.awt.Font("Unispace", 0, 10)); // NOI18N
-        jLabel5.setText("2 - Outros");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        jButton2.setText("Limpar ComboBox");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,38 +118,32 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jTxtMmsRgConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTxtMmsSexoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jButton1)
-                .addGap(24, 24, 24))
+                        .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtMmsSexoConsulta))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTxtMmsRgConsulta)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtMmsRgConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -194,7 +163,7 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -210,27 +179,27 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if( jTxtMmsRgConsulta.getText().equals("") && jTxtMmsSexoConsulta.getText().equals("")){
+        if (jTxtMmsRgConsulta.getText().isEmpty() && jCboSexo.getSelectedItem() == null) {
         clienteControle = new ClienteControle();
         List lista = mmsClienteDao.listAll();
         clienteControle.setList(lista);
         jTable1.setModel(clienteControle);
-    } else{ 
-        if(!jTxtMmsRgConsulta.getText().equals("") && !jTxtMmsSexoConsulta.getText().equals("")  ){
-        List results = mmsClienteDao.listRgSexo(jTxtMmsRgConsulta.getText(), Util.strInt(jTxtMmsSexoConsulta.getText()));
+    } else{
+            if (!jTxtMmsRgConsulta.getText().isEmpty() && jCboSexo.getSelectedItem() != null){
+        List results = mmsClienteDao.listRgSexo(jTxtMmsRgConsulta.getText(), jCboSexo.getSelectedIndex());
         clienteControle = new ClienteControle();
         clienteControle.setList(results);
         jTable1.setModel(clienteControle);
     
-    } else{
-        if(! jTxtMmsRgConsulta.getText().equals("")){
+    } else 
+            {if (!jTxtMmsRgConsulta.getText().isEmpty()) {
         List lista = mmsClienteDao.listRG(jTxtMmsRgConsulta.getText());
         clienteControle = new ClienteControle();
         clienteControle.setList(lista);
         jTable1.setModel(clienteControle);
     } 
-    if(! jTxtMmsSexoConsulta.getText().equals("")){
-        List lista = mmsClienteDao.listSexo(Util.strInt(jTxtMmsSexoConsulta.getText()));
+    if (jCboSexo.getSelectedItem() != null) {
+        List lista = mmsClienteDao.listSexo(jCboSexo.getSelectedIndex());
         clienteControle = new ClienteControle();
         clienteControle.setList(lista);
         jTable1.setModel(clienteControle);
@@ -239,7 +208,19 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
         }   
     }
         
+        //usei o metodo isEmpty() pois, usando o equals("") junto das verificações do jCbo com os operadores !=
+        //a tela rodava e fazia suas funções, mas existia um erro de null pointer, que só foi resolvido
+        //após a adição do método isEmpty()
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboSexoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCboSexoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Util.limparCampos(jCboSexo);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,18 +267,15 @@ public class MmsTelaConsultaClientes extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jCboSexo;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTxtMmsRgConsulta;
-    private javax.swing.JTextField jTxtMmsSexoConsulta;
     // End of variables declaration//GEN-END:variables
 }

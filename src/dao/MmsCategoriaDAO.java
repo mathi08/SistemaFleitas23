@@ -63,7 +63,7 @@ public class MmsCategoriaDAO extends DAO_Abstract {
      public List listConsumoMin(int consumoMin) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmsCategoria.class);
-        criteria.add(Restrictions.eq("mmsConsumoMinimo", consumoMin));
+        criteria.add(Restrictions.ge("mmsConsumoMinimo", consumoMin));
         List results = criteria.list();
         session.getTransaction().commit();
         return results;
@@ -81,7 +81,7 @@ public class MmsCategoriaDAO extends DAO_Abstract {
     public List listConsumoSli(int consumoMin, String Sli) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmsCategoria.class);
-         criteria.add(Restrictions.eq("mmsConsumoMinimo", consumoMin));
+         criteria.add(Restrictions.ge("mmsConsumoMinimo", consumoMin));
         criteria.add(Restrictions.like("mmsSliCrossFire", "%" + Sli+ "%"));
 
         List results = criteria.list();

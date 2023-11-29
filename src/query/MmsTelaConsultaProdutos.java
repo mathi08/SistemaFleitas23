@@ -58,7 +58,7 @@ public class MmsTelaConsultaProdutos extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
-        jLabel2.setText("Preço");
+        jLabel2.setText("Preço (Maior ou Igual)");
 
         jButton1.setText("Consultar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
