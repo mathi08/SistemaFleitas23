@@ -43,6 +43,10 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         
     }
     
+     public int getSelectedRowProd() {
+        return jTblMMSTabela.getSelectedRow();
+    
+    }
     
     
 
@@ -140,13 +144,14 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
+         mmsTelaCategoriaIA.setTitle("Incluir");
         mmsTelaCategoriaIA.setVisible(true);
-        mmsTelaCategoriaIA.setTitle("Incluir");
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
-        mmsTelaCategoriaIA.setVisible(true);
         mmsTelaCategoriaIA.setTitle("Alterar");
+        mmsTelaCategoriaIA.setVisible(true);
+        
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed

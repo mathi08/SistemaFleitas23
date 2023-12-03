@@ -8,13 +8,17 @@ package views;
 import bean.MmsProduto;
 import dao.MmsProdutoDAO;
 import tools.Util;
-
+import views.MmsTelaProduto;
+import tools.ProdutoControle;
 /**
  *
  * @author halom
  */
 public class MmsTelaProdutoIA extends javax.swing.JDialog {
-
+        MmsTelaProduto mmsTelaProduto;
+        ProdutoControle produtoControle;
+        MmsProdutoDAO produtoDAO;
+    
     /**
      * Creates new form MmsTelaProdutoIA
      */
@@ -254,10 +258,15 @@ public class MmsTelaProdutoIA extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnMMSCancelarActionPerformed
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
-
-    MmsProduto mmsProduto = viewBean();
-    MmsProdutoDAO mmsProdutoDAO = new MmsProdutoDAO();
-    mmsProdutoDAO.insert(mmsProduto);        
+          MmsProduto mmsProduto = viewBean(); 
+          MmsProdutoDAO produtoDAO = new MmsProdutoDAO();
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+            produtoDAO.insert(mmsProduto);
+           
+        } else {    
+             produtoDAO.update(mmsProduto);
+        }
+        setVisible(false);        
     
          Util.limparCampos(jTxtMMSCodigoP,jTxtMMSDescricao, jTxtMMSDimensao, jTxtMMSGarantia, jTxtMMSMarca, jTxtMMSMemoria, jTxtMMSModelo, jTxtMMSNomeP, jTxtMMSPeso,jTxtMMSconsumo);  
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed

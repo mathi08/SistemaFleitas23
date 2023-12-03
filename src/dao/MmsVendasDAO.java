@@ -46,7 +46,7 @@ public class MmsVendasDAO extends DAO_Abstract {
     public Object list(int id) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmsVendas.class); //importar do bean e do hibernate; criteria é pra fazer select * from na O.O
-        criteria.add(Restrictions.eq("idclientes", id)); //é um método estático; id é o parametro da linha 46
+        criteria.add(Restrictions.eq("idvendas", id)); //é um método estático; id é o parametro da linha 46
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
@@ -83,7 +83,7 @@ public class MmsVendasDAO extends DAO_Abstract {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(MmsVendas.class);
         criteria.add(Restrictions.eq("mmsDataVenda", data ));        
-        criteria.add(Restrictions.ge("mmsValor", valor));;
+        criteria.add(Restrictions.ge("mmsValor", valor));
 
         List results = criteria.list();
         session.getTransaction().commit();

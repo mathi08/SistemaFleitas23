@@ -24,6 +24,22 @@ public class ControleCategoria extends AbstractTableModel {
         return (MmsCategoria) lista.get(linha);
     }
     
+    
+    public void addBean(MmsCategoria mmsCategoria) {
+            lista.add(mmsCategoria);
+            this.fireTableDataChanged();
+    }
+    
+    public void removeBean(int index) {
+            lista.remove(index);
+            this.fireTableDataChanged();
+    }
+    
+    public void updateBean(int index, MmsCategoria mmsCategoria){
+        lista.set(index, mmsCategoria);
+        this.fireTableDataChanged();
+    }
+    
     @Override
     public int getRowCount() {
         return lista.size();

@@ -38,7 +38,11 @@ public class MmsTelaProduto extends javax.swing.JDialog {
          produtoControle.setList(lista);
          jTblMmmsTabela2.setModel(produtoControle);
     }
-
+        public int getSelectedRowProd() {
+        return jTblMmmsTabela2.getSelectedRow();
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,24 +139,15 @@ public class MmsTelaProduto extends javax.swing.JDialog {
 
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
           // TODO add your handling code here:
-        mmsTelaProdutoIA.setVisible(true);
-        mmsTelaProdutoIA.setTitle("Incluindo");
+          mmsTelaProdutoIA.setTitle("Incluindo");
+          mmsTelaProdutoIA.setVisible(true);
+        
         
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
-         int sel = jTblMmmsTabela2.getSelectedRow();
-         incluindo = false;
-       
-        MmsProduto mmsProduto = produtoControle.getBean(sel);
-        mmsTelaProdutoIA.beanView(mmsProduto);
-        
-        this.mmsTelaProdutoIA.setVisible(true);
-        mmsTelaProdutoIA.setTitle("Alterando");
-       
-        
-        mmsTelaProdutoIA.setVisible(true);
-        mmsTelaProdutoIA.setTitle("Alterando");
+         mmsTelaProdutoIA.setTitle("Alterando");
+          mmsTelaProdutoIA.setVisible(true);
         
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
@@ -171,7 +166,8 @@ public class MmsTelaProduto extends javax.swing.JDialog {
         } else {
             Util.mensagem("Exclusão cancelada.");
         }
-        
+            List lista = produtoDAO.listAll();
+            produtoControle.setList(lista);
     }//GEN-LAST:event_jBtnMMSExcluirActionPerformed
 
     /**

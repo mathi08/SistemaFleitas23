@@ -2,10 +2,13 @@ package bean;
 // Generated 13/11/2023 18:58:12 by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,21 +22,21 @@ public class MmsVendasProduto  implements java.io.Serializable {
 
 
      private int mmsIdvendasProduto;
-     private Integer mmsVenda;
-     private Integer mmsProduto;
+     private MmsVendas mmsVenda;
+     private MmsProduto mmsProduto;
      private String mmsQuantidade;
-     private BigDecimal mmsValorUnitario;
+     private Double mmsValorUnitario;
 
     public MmsVendasProduto() {
     }
 
 	
-    public MmsVendasProduto(int mmsIdvendasProduto, String mmsQuantidade, BigDecimal mmsValorUnitario) {
+    public MmsVendasProduto(int mmsIdvendasProduto, String mmsQuantidade, Double mmsValorUnitario) {
         this.mmsIdvendasProduto = mmsIdvendasProduto;
         this.mmsQuantidade = mmsQuantidade;
         this.mmsValorUnitario = mmsValorUnitario;
     }
-    public MmsVendasProduto(int mmsIdvendasProduto, Integer mmsVenda, Integer mmsProduto, String mmsQuantidade, BigDecimal mmsValorUnitario) {
+    public MmsVendasProduto(int mmsIdvendasProduto, MmsVendas mmsVenda, MmsProduto mmsProduto, String mmsQuantidade, Double mmsValorUnitario) {
        this.mmsIdvendasProduto = mmsIdvendasProduto;
        this.mmsVenda = mmsVenda;
        this.mmsProduto = mmsProduto;
@@ -53,23 +56,25 @@ public class MmsVendasProduto  implements java.io.Serializable {
         this.mmsIdvendasProduto = mmsIdvendasProduto;
     }
 
-    
-    @Column(name="mms_venda")
-    public Integer getMmsVenda() {
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mms_venda")
+
+    public MmsVendas getMmsVenda() {
         return this.mmsVenda;
     }
     
-    public void setMmsVenda(Integer mmsVenda) {
+    public void setMmsVenda(MmsVendas mmsVenda) {
         this.mmsVenda = mmsVenda;
     }
 
     
-    @Column(name="mms_produto")
-    public Integer getMmsProduto() {
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mms_produto")
+    public MmsProduto getMmsProduto() {
         return this.mmsProduto;
     }
     
-    public void setMmsProduto(Integer mmsProduto) {
+    public void setMmsProduto(MmsProduto mmsProduto) {
         this.mmsProduto = mmsProduto;
     }
 
@@ -85,11 +90,11 @@ public class MmsVendasProduto  implements java.io.Serializable {
 
     
     @Column(name="mms_valorUnitario", nullable=false, precision=8)
-    public BigDecimal getMmsValorUnitario() {
+    public Double getMmsValorUnitario() {
         return this.mmsValorUnitario;
     }
     
-    public void setMmsValorUnitario(BigDecimal mmsValorUnitario) {
+    public void setMmsValorUnitario(Double mmsValorUnitario) {
         this.mmsValorUnitario = mmsValorUnitario;
     }
 

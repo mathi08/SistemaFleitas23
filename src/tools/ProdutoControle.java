@@ -24,6 +24,21 @@ public class ProdutoControle extends AbstractTableModel {
         return (MmsProduto) lista.get(linha);
     }
     
+    public void addBean(MmsProduto mmsProduto) {
+            lista.add(mmsProduto);
+            this.fireTableDataChanged();
+    }
+    
+    public void removeBean(int index) {
+            lista.remove(index);
+            this.fireTableDataChanged();
+    }
+    
+    public void updateBean(int index, MmsProduto mmsProduto){
+        lista.set(index, mmsProduto);
+        this.fireTableDataChanged();
+    }
+    
     @Override
     public int getRowCount() {
         return lista.size();

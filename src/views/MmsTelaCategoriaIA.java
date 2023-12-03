@@ -7,6 +7,7 @@ package views;
 
 import bean.MmsCategoria;
 import dao.MmsCategoriaDAO;
+import tools.ControleCategoria;
 import tools.Util;
 import views.MmsTelaCategoria;
 
@@ -18,6 +19,8 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
  
         boolean incluir;
         MmsTelaCategoria mmsTelaCategoria;
+        MmsCategoriaDAO mmsCategoriaDAO;
+        ControleCategoria controleCategoria;
     /**
      * Creates new form MmsTelaCategoriaIA
      */
@@ -240,10 +243,16 @@ public class MmsTelaCategoriaIA extends javax.swing.JDialog {
 
     private void jBtnMMSConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSConfirmarActionPerformed
         
-        MmsCategoria mmsCategoria = viewBean();
-        MmsCategoriaDAO mmsCategoriaDAO = new MmsCategoriaDAO();
-        mmsCategoriaDAO.insert(mmsCategoria);
-        
+        MmsCategoria mmsCategoria = viewBean(); 
+         MmsCategoriaDAO categoriaDAO = new MmsCategoriaDAO();
+        if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
+          categoriaDAO.insert(mmsCategoria);
+        } else {            
+          categoriaDAO.update(mmsCategoria);
+        }
+        //controleCategoria.setList(lista);
+        setVisible(false);
+       
         
         Util.limparCampos(jTxtMMSCodigo, jTxtMMSDescricao, jTxtMMSNome, jTxtMMSTipoPlaca, jTxtMmsConsumomin, jTxtMmsconsumoMax, jTxtMmsTempMédia, jChbMmsSliCrossfire);
     }//GEN-LAST:event_jBtnMMSConfirmarActionPerformed

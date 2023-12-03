@@ -159,9 +159,22 @@ public class MmsProduto  implements java.io.Serializable {
         this.mmsModelo = mmsModelo;
     }
 
-
-
-
+     @Override
+     public String toString() {
+    return mmsNome;
 }
+ @Override
+      public boolean equals (Object object){
+      if(object instanceof MmsProduto){
+      MmsProduto mmsProduto = (MmsProduto) object;
+        if(this.getMmsIdproduto()== mmsProduto.getMmsIdproduto())
+            return true;
+                }         
+                return false;
+            }
+         
+}
+
+
 
 

@@ -209,9 +209,22 @@ public class MmsCliente  implements java.io.Serializable {
         this.mmsSexo = mmsSexo;
     }
 
-
-
-
+     @Override
+     public String toString() {
+    return mmsNome;
 }
+     @Override
+      public boolean equals (Object object){
+      if(object instanceof MmsCliente){
+      MmsCliente mmsCliente = (MmsCliente) object;
+        if(this.getMmsIdcliente() == mmsCliente.getMmsIdcliente())
+            return true;
+                }         
+                return false;
+            }
+         
+}
+
+
 
 

@@ -5,7 +5,10 @@ package bean;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +24,7 @@ public class MmsVendas  implements java.io.Serializable {
 
 
      private int mmsIdVendas;
-     private Integer mmsCliente;
+     private MmsCliente mmsCliente;
      private Date mmsDataVenda;
      private Double mmsValor;
      private int mmsVendedores;
@@ -30,13 +33,7 @@ public class MmsVendas  implements java.io.Serializable {
     }
 
 	
-    public MmsVendas(int mmsIdVendas, Date mmsDataVenda, Double mmsValor, int mmsVendedores) {
-        this.mmsIdVendas = mmsIdVendas;
-        this.mmsDataVenda = mmsDataVenda;
-        this.mmsValor = mmsValor;
-        this.mmsVendedores = mmsVendedores;
-    }
-    public MmsVendas(int mmsIdVendas, Integer mmsCliente, Date mmsDataVenda, Double mmsValor, int mmsVendedores) {
+    public MmsVendas(int mmsIdVendas, MmsCliente mmsCliente, Date mmsDataVenda, Double mmsValor, int mmsVendedores) {
        this.mmsIdVendas = mmsIdVendas;
        this.mmsCliente = mmsCliente;
        this.mmsDataVenda = mmsDataVenda;
@@ -56,13 +53,14 @@ public class MmsVendas  implements java.io.Serializable {
         this.mmsIdVendas = mmsIdVendas;
     }
 
-    
-    @Column(name="mms_cliente")
-    public Integer getMmsCliente() {
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="mms_cliente")
+ 
+    public MmsCliente getMmsCliente() {
         return this.mmsCliente;
     }
     
-    public void setMmsCliente(Integer mmsCliente) {
+    public void setMmsCliente(MmsCliente mmsCliente) {
         this.mmsCliente = mmsCliente;
     }
 
