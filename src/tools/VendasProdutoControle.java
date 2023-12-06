@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
 public class VendasProdutoControle extends AbstractTableModel {
 
   
-         List lista;
+    List lista;
 
 
      public void setList(List lista) {
@@ -36,26 +36,6 @@ public class VendasProdutoControle extends AbstractTableModel {
         return 4;
     }
 
-    
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-       MmsVendasProduto vendasProduto = (MmsVendasProduto) lista.get(rowIndex);
-        if (columnIndex == 0) {
-            return vendasProduto.getMmsIdvendasProduto();
-        }
-        if (columnIndex == 1) {
-            return vendasProduto.getMmsProduto();
-        }
-        if (columnIndex == 2) {
-            return vendasProduto.getMmsQuantidade();
-        }
-        if (columnIndex == 3) {
-            return vendasProduto.getMmsValorUnitario();
-        }
-        
-        return "VendaProduto";
-    }
-    
      public MmsVendasProduto getBean(int linha) {
         return (MmsVendasProduto) lista.get(linha);
     }
@@ -77,6 +57,27 @@ public class VendasProdutoControle extends AbstractTableModel {
     
     
     @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+       MmsVendasProduto vendasProduto = (MmsVendasProduto) lista.get(rowIndex);
+        if (columnIndex == 0) {
+            return vendasProduto.getMmsIdvendasProduto();
+        }
+        if (columnIndex == 1) {
+            return vendasProduto.getMmsProduto();
+        }
+        if (columnIndex == 2) {
+            return vendasProduto.getMmsQuantidade();
+        }
+        if (columnIndex == 3) {
+            return vendasProduto.getMmsValorUnitario();
+        }
+        
+        return "";
+    }
+    
+    
+    
+    @Override
     public String getColumnName(int columnIndex) {
         if (columnIndex == 0) {
             return "ID Venda Produto";
@@ -91,7 +92,7 @@ public class VendasProdutoControle extends AbstractTableModel {
             return "Valor Unitário";
         }
         
-        return "";
+        return null;
     }
     
 }

@@ -152,6 +152,10 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         mmsTelaCategoriaIA.setTitle("Alterar");
         mmsTelaCategoriaIA.setVisible(true);
         
+        int sel = jTblMMSTabela.getSelectedRow();
+        MmsCategoria mmsCategoria = controlecategoria.getBean(sel);
+        mmsTelaCategoriaIA.beanView(mmsCategoria);
+        
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed

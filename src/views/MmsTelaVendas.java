@@ -8,6 +8,7 @@ import bean.MmsCliente;
 import bean.MmsVendas;
 import bean.MmsVendasProduto;
 import dao.MmsClienteDAO;
+import dao.MmsProdutoDAO;
 import dao.MmsVendasDAO;
 import dao.MmsVendasProdutoDAO;
 
@@ -42,6 +43,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
     VendasProdutoControle vendasProdutoControle;
     MmsCliente mmsCliente;
     MmsTelaVendasPesquisar mmsTelaVendasPesquisar;
+    MmsTelaVendasProduto mmsTelaVendasProduto;
     
     
     /**
@@ -52,11 +54,11 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         initComponents();
         setTitle("Tela de Vendas");
         Util.habilitar(false, jTxtNumPedido, jFmtDataVenda, jCboMmsCliente, jCboVendedor, jTxtTotal, jBtnAlterar2, jBtnExcluir2,jBtnIncluir2, jBtnConfirmar, jBtnCancelar );
-        
         setLocationRelativeTo(null);
-        List lista = new ArrayList();
         mmsVendasDAO = new MmsVendasDAO();
-        jTblVendaProduto.setModel(vendasProdutoControle);
+       
+       
+       
        
         
         MmsClienteDAO mmsclienteDAO = new MmsClienteDAO();
@@ -65,20 +67,19 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         jCboMmsCliente.addItem((MmsCliente) listaCli.get(i));
         }
         
-         try {
-             mascaraData = new MaskFormatter("##/##/####");
-         } catch (ParseException ex) {
-             Logger.getLogger(MmsTelaVendas.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+         vendasProdutoControle = new VendasProdutoControle();
+         List lista = new ArrayList();
+        vendasProdutoControle.setList(lista);
+        jTblseila.setModel(vendasProdutoControle);
+        try {
+            mascaraData = new MaskFormatter("##/##/####");
+        } catch (ParseException ex) {
+            Logger.getLogger(MmsTelaVendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
         jFmtDataVenda.setFormatterFactory(new DefaultFormatterFactory(mascaraData));
 
-       vendaControle = new VendaControle();
-       vendaControle.setList(lista);
-       jTblVendaProduto.setModel(vendaControle);
-
-      
     }
+
 
      public MmsVendas viewBean() {
        MmsVendas mmsVendas = new MmsVendas();
@@ -98,20 +99,21 @@ public class MmsTelaVendas extends javax.swing.JDialog {
      
 
     public void beanView(MmsVendas vendas) {
+        mmsvendas = vendas;
         jTxtNumPedido.setText(String.valueOf(vendas.getMmsIdVendas()));
         jFmtDataVenda.setText(Util.dateStr(vendas.getMmsDataVenda()));
         jCboMmsCliente.setSelectedItem(vendas.getMmsCliente());
         jCboVendedor.setSelectedItem(vendas.getMmsVendedores());
         jTxtTotal.setText(String.valueOf(vendas.getMmsValor()));
 
-       MmsVendasProdutoDAO mmsVendasProdutoDAO = new MmsVendasProdutoDAO();
-       List listaProd = (List) mmsVendasProdutoDAO.listProduto(mmsVendasProduto);
+       mmsVendasProdutoDAO = new MmsVendasProdutoDAO();
+       List listaProd = (List) mmsVendasProdutoDAO.listProduto(mmsvendas);
        vendasProdutoControle.setList(listaProd);
     }
 
     
     public int getSelectedRowProd() {
-        return jTblVendaProduto.getSelectedRow();
+        return jTblseila.getSelectedRow();
     
     }
        
@@ -137,7 +139,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jTxtTotal = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTblVendaProduto = new javax.swing.JTable();
+        jTblseila = new javax.swing.JTable();
         jBtnIncluir2 = new javax.swing.JButton();
         jBtnAlterar2 = new javax.swing.JButton();
         jBtnExcluir2 = new javax.swing.JButton();
@@ -174,7 +176,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
 
         jLabel5.setText("Total");
 
-        jTblVendaProduto.setModel(new javax.swing.table.DefaultTableModel(
+        jTblseila.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -185,7 +187,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTblVendaProduto);
+        jScrollPane1.setViewportView(jTblseila);
 
         jBtnIncluir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/04 - incluir.png"))); // NOI18N
         jBtnIncluir2.addActionListener(new java.awt.event.ActionListener() {
@@ -357,7 +359,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jTxtNumPedidoActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-        Util.limparCampos(jTblVendaProduto, jTxtNumPedido, jTxtTotal, jFmtDataVenda, jCboMmsCliente, jCboVendedor);
+        Util.limparCampos(jTblseila, jTxtNumPedido, jTxtTotal, jFmtDataVenda, jCboMmsCliente, jCboVendedor);
         
         MmsTelaVendasPesquisar mmsTelaVendasPesquisar = new MmsTelaVendasPesquisar(null, true);
         mmsTelaVendasPesquisar.setTelaAnterior(this);
@@ -388,8 +390,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         } else {
             Util.mensagem("Deve ser realizada uma pesquisa antes");
         }
-        Util.limparCampos(jTxtNumPedido, jFmtDataVenda, jCboMmsCliente, jCboVendedor, jTxtTotal);
-        
+      
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
@@ -397,7 +398,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         if (mmsvendas != null) {
             if (Util.perguntar("Deseja excluir o pedido ?") == true) {
                 MmsVendasProduto mmsVendasProduto;
-                for (int linha = 0; linha < jTblVendaProduto.getRowCount(); linha++) {
+                for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
                     mmsVendasProduto = vendasProdutoControle.getBean(linha);
                     mmsVendasProdutoDAO.delete(mmsVendasProduto);
                 }
@@ -406,6 +407,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         } else {
             Util.mensagem("Deve ser realizada uma pesquisa antes");
         }
+        vendasProdutoControle.setList(new ArrayList());
         Util.limparCampos(jTxtNumPedido, jFmtDataVenda, jCboMmsCliente, jCboVendedor, jTxtTotal);
         mmsvendas = null;
     }//GEN-LAST:event_jBtnExcluirActionPerformed
@@ -415,9 +417,9 @@ public class MmsTelaVendas extends javax.swing.JDialog {
          mmsvendas = viewBean();
         if (incluindo == true) {
             mmsVendasDAO.insert(mmsvendas);
-            MmsVendasProdutoDAO mmsVendasProdutoDAO = new MmsVendasProdutoDAO();
+             mmsVendasProdutoDAO = new MmsVendasProdutoDAO();
             
-            for (int linha = 0; linha < jTblVendaProduto.getRowCount(); linha++) {
+            for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
                 mmsVendasProduto = vendasProdutoControle.getBean(linha);
                 mmsVendasProduto.setMmsVenda(mmsvendas);
                 mmsVendasProdutoDAO.insert(mmsVendasProduto);
@@ -425,14 +427,22 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         } else {
             mmsVendasDAO.update(mmsvendas);
             //remover todos os pedidos produtos deste pedido
-
+            mmsVendasProdutoDAO = new MmsVendasProdutoDAO();
+            MmsVendasProduto mmsVendaProduto;
+            for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
+                mmsVendaProduto = vendasProdutoControle.getBean(linha);
+                mmsVendaProduto.setMmsVenda(mmsvendas);
+                mmsVendasProdutoDAO.delete(mmsVendasProduto);
             //incluir todos os pedidosProduto que estao no jtable
-          
-            for (int linha = 0; linha < jTblVendaProduto.getRowCount(); linha++) {
-                mmsVendasProduto = vendasProdutoControle.getBean(linha);
-                mmsVendasProduto.setMmsVenda(mmsvendas);
-                this.mmsVendasProdutoDAO.insert(mmsVendasProduto);
+            }          
+            for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
+                mmsVendaProduto = vendasProdutoControle.getBean(linha);
+                mmsVendaProduto.setMmsVenda(mmsvendas);
+                mmsVendasProdutoDAO.insert(mmsVendasProduto);
+               
             }
+            
+           
         }
         //habilitar(false);
         Util.limparCampos(jTxtNumPedido, jFmtDataVenda, jCboMmsCliente, jCboVendedor, jTxtTotal);
@@ -457,24 +467,25 @@ public class MmsTelaVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnIncluir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluir2ActionPerformed
-        MmsTelaVendasProduto mmsTelaVendasProduto = new MmsTelaVendasProduto(null, true);
+        mmsTelaVendasProduto = new MmsTelaVendasProduto(null, true);
         mmsTelaVendasProduto.setTitle("inclusão de produtos");
         mmsTelaVendasProduto.setTelaAnterior(this);
         mmsTelaVendasProduto.setVisible(true);
     }//GEN-LAST:event_jBtnIncluir2ActionPerformed
 
     private void jBtnAlterar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterar2ActionPerformed
-       MmsTelaVendasProduto mmsTelaVendasProduto = new MmsTelaVendasProduto(null, true);
+        mmsTelaVendasProduto = new MmsTelaVendasProduto(null, true);
         mmsTelaVendasProduto.setTitle("Alteração de produtos");
         mmsTelaVendasProduto.setTelaAnterior(this);
-        int linSel = jTblVendaProduto.getSelectedRow();
-        MmsVendasProduto mmsVendasProduto = (MmsVendasProduto) vendasProdutoControle.getBean(linSel);
+        
+        int linSel = jTblseila.getSelectedRow();
+        mmsVendasProduto = (MmsVendasProduto) vendasProdutoControle.getBean(linSel);
         mmsTelaVendasProduto.beanView(mmsVendasProduto);
         mmsTelaVendasProduto.setVisible(true);
     }//GEN-LAST:event_jBtnAlterar2ActionPerformed
 
     private void jBtnExcluir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluir2ActionPerformed
-       int linha = jTblVendaProduto.getSelectedRow();
+       int linha = jTblseila.getSelectedRow();
         if (linha == -1) {
             Util.mensagem("Nenhuma linha selecionada");
         } else {
@@ -549,7 +560,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTblVendaProduto;
+    private javax.swing.JTable jTblseila;
     private javax.swing.JTextField jTxtNumPedido;
     private javax.swing.JTextField jTxtTotal;
     // End of variables declaration//GEN-END:variables

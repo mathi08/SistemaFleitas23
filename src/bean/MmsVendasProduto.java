@@ -2,9 +2,12 @@ package bean;
 // Generated 13/11/2023 18:58:12 by Hibernate Tools 4.3.1
 
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -44,7 +47,7 @@ public class MmsVendasProduto  implements java.io.Serializable {
        this.mmsValorUnitario = mmsValorUnitario;
     }
    
-     @Id 
+     @Id  @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="mms_idvendas_produto", unique=true, nullable=false)

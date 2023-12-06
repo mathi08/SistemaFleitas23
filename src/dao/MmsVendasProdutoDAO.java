@@ -61,10 +61,10 @@ public class MmsVendasProdutoDAO extends DAO_Abstract {
         return lista; //registros no java sao transformados em bean; nao precisa do array pq mudou na linha 50 só pra list
     }
     
-    public List listProduto(MmsVendasProduto mmsVendasProduto){
+    public List listProduto(MmsVendas mmsVendas){
        session.beginTransaction();
         Criteria criteria = session.createCriteria(MmsVendasProduto.class);
-        criteria.add( Restrictions.eq("mmsVenda", mmsVendasProduto));
+        criteria.add( Restrictions.eq("mmsVenda", mmsVendas));
         List lista = criteria.list();
         session.getTransaction().commit();
         return lista;

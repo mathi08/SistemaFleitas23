@@ -111,6 +111,12 @@ public class MmsTelaVendasProduto extends javax.swing.JDialog {
 
         jLabel4.setText("Total");
 
+        jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTotalActionPerformed(evt);
+            }
+        });
+
         jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/05 - ok.png"))); // NOI18N
         jBtnConfirmar.setText("Ok");
         jBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,14 +189,14 @@ public class MmsTelaVendasProduto extends javax.swing.JDialog {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
 
-        MmsVendasProduto mmsVendasPoduto = new MmsVendasProduto();
-        mmsVendasPoduto.setMmsProduto((MmsProduto) jCboProduto.getSelectedItem() );
-        mmsVendasPoduto.setMmsQuantidade(jTxtQuantidade.getText() );
-        mmsVendasPoduto.setMmsValorUnitario(Util.strDouble(jTxtValorUnitario.getText()));
+        MmsVendasProduto mmsVendasProduto = new MmsVendasProduto();
+        mmsVendasProduto.setMmsProduto((MmsProduto) jCboProduto.getSelectedItem() );
+        mmsVendasProduto.setMmsQuantidade(jTxtQuantidade.getText() );
+        mmsVendasProduto.setMmsValorUnitario(Util.strDouble(jTxtValorUnitario.getText()));
         if (getTitle().toUpperCase().substring(0, 1).equals("I")) {
            mmsTelaVendas.vendasProdutoControle.addBean(mmsVendasProduto);
         } else {            
-            mmsTelaVendas.vendasProdutoControle.updateBean(mmsTelaVendas.getSelectedRowProd(), mmsVendasPoduto);
+            mmsTelaVendas.vendasProdutoControle.updateBean(mmsTelaVendas.getSelectedRowProd(), mmsVendasProduto);
         }
         setVisible(false);
         
@@ -224,6 +230,10 @@ public class MmsTelaVendasProduto extends javax.swing.JDialog {
         jTxtTotal.setText("0");
         }
     }//GEN-LAST:event_jTxtValorUnitarioKeyReleased
+
+    private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtTotalActionPerformed
 
     /**
      * @param args the command line arguments

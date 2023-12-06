@@ -141,6 +141,8 @@ public class MmsTelaProduto extends javax.swing.JDialog {
           // TODO add your handling code here:
           mmsTelaProdutoIA.setTitle("Incluindo");
           mmsTelaProdutoIA.setVisible(true);
+          List lista = produtoDAO.listAll();
+          produtoControle.setList(lista);
         
         
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
@@ -149,6 +151,10 @@ public class MmsTelaProduto extends javax.swing.JDialog {
          mmsTelaProdutoIA.setTitle("Alterando");
           mmsTelaProdutoIA.setVisible(true);
         
+        int sel = jTblMmmsTabela2.getSelectedRow();
+        MmsProduto mmsProduto = produtoControle.getBean(sel);
+        mmsTelaProdutoIA.beanView(mmsProduto);
+          
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
