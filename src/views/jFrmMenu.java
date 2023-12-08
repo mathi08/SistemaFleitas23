@@ -10,6 +10,8 @@ import query.MmsTelaConsultaUsuario;
 import query.MmsTelaConsultaVendas;
 import query.MmsTelaConsultaClientes;
 import query.MmsTelaConsultaProdutos;
+import query.MmsTelaConsultaCategoria;
+
 /**
  *
  * @author halom
@@ -63,6 +65,7 @@ public class jFrmMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -259,6 +262,14 @@ public class jFrmMenu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem7);
 
+        jMenuItem8.setText("Consulta de Categoria");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -280,7 +291,8 @@ public class jFrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMnuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendasActionPerformed
-       
+        MmsTelaVendas mmsTelaVendas = new MmsTelaVendas(null, true);
+        mmsTelaVendas.setVisible(true);
     }//GEN-LAST:event_jMnuVendasActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -363,6 +375,11 @@ public class jFrmMenu extends javax.swing.JFrame {
         mmsTelaConsultaVendas.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        MmsTelaConsultaCategoria mmsTelaConsultaCategoria = new MmsTelaConsultaCategoria(null, true);
+        mmsTelaConsultaCategoria.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -414,6 +431,7 @@ public class jFrmMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMnuClientes;
     private javax.swing.JMenu jMnuMovimento;
     private javax.swing.JMenu jMnuPrincipal;

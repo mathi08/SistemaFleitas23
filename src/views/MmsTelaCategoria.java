@@ -146,16 +146,22 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
     private void jBtnMMSIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSIncluirActionPerformed
          mmsTelaCategoriaIA.setTitle("Incluir");
         mmsTelaCategoriaIA.setVisible(true);
+        
+          List lista = categoriaDAO.listAll();
+          controlecategoria.setList(lista);
     }//GEN-LAST:event_jBtnMMSIncluirActionPerformed
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
         mmsTelaCategoriaIA.setTitle("Alterar");
-        mmsTelaCategoriaIA.setVisible(true);
+        
         
         int sel = jTblMMSTabela.getSelectedRow();
         MmsCategoria mmsCategoria = controlecategoria.getBean(sel);
         mmsTelaCategoriaIA.beanView(mmsCategoria);
         
+         mmsTelaCategoriaIA.setVisible(true);
+         List lista = categoriaDAO.listAll();
+         controlecategoria.setList(lista);
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed
@@ -173,6 +179,8 @@ public class MmsTelaCategoria extends javax.swing.JDialog {
         } else {
             Util.mensagem("Exclusão cancelada.");
         }
+          List lista = categoriaDAO.listAll();
+          controlecategoria.setList(lista);
     }//GEN-LAST:event_jBtnMMSExcluirActionPerformed
 
     /**

@@ -23,6 +23,7 @@ public class MmsTelaProduto extends javax.swing.JDialog {
     ProdutoControle produtoControle;        
     MmsTelaProdutoIA mmsTelaProdutoIA;
     boolean incluindo;
+    MmsProduto mmsProduto;
     
     
     public MmsTelaProduto(java.awt.Frame parent, boolean modal) {  
@@ -141,6 +142,7 @@ public class MmsTelaProduto extends javax.swing.JDialog {
           // TODO add your handling code here:
           mmsTelaProdutoIA.setTitle("Incluindo");
           mmsTelaProdutoIA.setVisible(true);
+         
           List lista = produtoDAO.listAll();
           produtoControle.setList(lista);
         
@@ -149,12 +151,14 @@ public class MmsTelaProduto extends javax.swing.JDialog {
 
     private void jBtnMMSAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSAlterarActionPerformed
          mmsTelaProdutoIA.setTitle("Alterando");
-          mmsTelaProdutoIA.setVisible(true);
-        
+          
         int sel = jTblMmmsTabela2.getSelectedRow();
         MmsProduto mmsProduto = produtoControle.getBean(sel);
         mmsTelaProdutoIA.beanView(mmsProduto);
-          
+        
+        mmsTelaProdutoIA.setVisible(true); 
+         List lista = produtoDAO.listAll();
+          produtoControle.setList(lista);
     }//GEN-LAST:event_jBtnMMSAlterarActionPerformed
 
     private void jBtnMMSExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnMMSExcluirActionPerformed

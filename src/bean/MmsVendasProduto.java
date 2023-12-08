@@ -2,7 +2,6 @@ package bean;
 // Generated 13/11/2023 18:58:12 by Hibernate Tools 4.3.1
 
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +10,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -59,7 +57,7 @@ public class MmsVendasProduto  implements java.io.Serializable {
         this.mmsIdvendasProduto = mmsIdvendasProduto;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="mms_venda")
 
     public MmsVendas getMmsVenda() {
@@ -71,7 +69,7 @@ public class MmsVendasProduto  implements java.io.Serializable {
     }
 
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="mms_produto")
     public MmsProduto getMmsProduto() {
         return this.mmsProduto;

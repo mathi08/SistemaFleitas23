@@ -53,7 +53,7 @@ public class MmsVendas  implements java.io.Serializable {
         this.mmsIdVendas = mmsIdVendas;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="mms_cliente")
  
     public MmsCliente getMmsCliente() {

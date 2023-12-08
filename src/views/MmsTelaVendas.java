@@ -300,9 +300,9 @@ public class MmsTelaVendas extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBtnIncluir)
-                        .addGap(18, 18, 18)
+                        .addGap(41, 41, 41)
                         .addComponent(jBtnAlterar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtnExcluir)
                         .addGap(18, 18, 18)
                         .addComponent(jBtnConfirmar)
@@ -310,7 +310,7 @@ public class MmsTelaVendas extends javax.swing.JDialog {
                         .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBtnPesquisar)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,17 +380,25 @@ public class MmsTelaVendas extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-
         
-        Util.habilitar(true, jTxtNumPedido, jFmtDataVenda, jCboMmsCliente, jCboVendedor, jTxtTotal, jBtnAlterar2, jBtnExcluir2,jBtnIncluir2, jBtnConfirmar, jBtnCancelar);
-        Util.habilitar(false, jBtnExcluir, jBtnAlterar, jBtnIncluir, jBtnPesquisar);
+  Util.habilitar(false, jBtnExcluir, jBtnIncluir, jBtnAlterar, jBtnPesquisar);
+
         if (mmsvendas != null) {
-            //habilitar(true);
-            incluindo = false;
+            
+           mmsVendasDAO = new MmsVendasDAO();
+                MmsVendasProduto mmsVendasProduto;
+                for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
+                    mmsVendasProduto = vendasProdutoControle.getBean(linha);
+                    mmsVendasDAO.delete(mmsVendasProduto);}
+                
+                
+            Util.habilitar(true, jTxtNumPedido, jFmtDataVenda, jCboMmsCliente, jCboVendedor, jTxtTotal, jBtnAlterar2, jBtnExcluir2,jBtnIncluir2, jBtnConfirmar, jBtnCancelar);
+            Util.habilitar(false, jBtnExcluir, jBtnAlterar, jBtnIncluir, jBtnPesquisar);
+
         } else {
             Util.mensagem("Deve ser realizada uma pesquisa antes");
         }
-      
+        incluindo = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
@@ -422,22 +430,17 @@ public class MmsTelaVendas extends javax.swing.JDialog {
             for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
                 mmsVendasProduto = vendasProdutoControle.getBean(linha);
                 mmsVendasProduto.setMmsVenda(mmsvendas);
-                mmsVendasProdutoDAO.insert(mmsVendasProduto);
+                  mmsVendasProdutoDAO.insert(mmsVendasProduto);
             }
         } else {
             mmsVendasDAO.update(mmsvendas);
             //remover todos os pedidos produtos deste pedido
             mmsVendasProdutoDAO = new MmsVendasProdutoDAO();
-            MmsVendasProduto mmsVendaProduto;
+            
+        
             for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
-                mmsVendaProduto = vendasProdutoControle.getBean(linha);
-                mmsVendaProduto.setMmsVenda(mmsvendas);
-                mmsVendasProdutoDAO.delete(mmsVendasProduto);
-            //incluir todos os pedidosProduto que estao no jtable
-            }          
-            for (int linha = 0; linha < jTblseila.getRowCount(); linha++) {
-                mmsVendaProduto = vendasProdutoControle.getBean(linha);
-                mmsVendaProduto.setMmsVenda(mmsvendas);
+                mmsVendasProduto = vendasProdutoControle.getBean(linha);
+                mmsVendasProduto.setMmsVenda(mmsvendas);
                 mmsVendasProdutoDAO.insert(mmsVendasProduto);
                
             }
@@ -482,6 +485,8 @@ public class MmsTelaVendas extends javax.swing.JDialog {
         mmsVendasProduto = (MmsVendasProduto) vendasProdutoControle.getBean(linSel);
         mmsTelaVendasProduto.beanView(mmsVendasProduto);
         mmsTelaVendasProduto.setVisible(true);
+        
+
     }//GEN-LAST:event_jBtnAlterar2ActionPerformed
 
     private void jBtnExcluir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluir2ActionPerformed

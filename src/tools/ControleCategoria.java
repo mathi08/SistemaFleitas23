@@ -18,6 +18,7 @@ public class ControleCategoria extends AbstractTableModel {
     
     public void setList(List lista) {
         this.lista = lista;
+        this.fireTableDataChanged();
     }
     
     public MmsCategoria getBean(int linha) {

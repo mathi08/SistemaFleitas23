@@ -212,16 +212,25 @@ public class MmsCliente  implements java.io.Serializable {
      @Override
      public String toString() {
     return mmsNome;
-}
+} // O método toString() é usado para fornecer uma representação em forma de string do objeto.
+     
+     
      @Override
       public boolean equals (Object object){
       if(object instanceof MmsCliente){
+      // Verifica se o objeto passado como argumento é uma instância de MmsCliente
       MmsCliente mmsCliente = (MmsCliente) object;
+      // Converte o objeto genérico para o tipo MmsCliente
         if(this.getMmsIdcliente() == mmsCliente.getMmsIdcliente())
+              // Compara os IDs dos objetos atual e recebido como parâmetro
             return true;
+             // Se os IDs forem iguais, retorna verdadeiro (indicando que os objetos são iguais)
                 }         
                 return false;
-            }
+                    // Se não for uma instância de MmsCliente ou os IDs forem diferentes, retorna falso
+
+                    //essa função é usada no cbo para igualar as fks de cliente no banco de dados
+      }
          
 }
 
